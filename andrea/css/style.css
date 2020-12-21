@@ -22,7 +22,15 @@ header {
     display: flex;
 }
 
+.navbar {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
 
+.logotype {
+    margin-right: auto;
+}
 .card-img {
     display: flex;
     position: absolute;  
