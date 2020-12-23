@@ -1,4 +1,4 @@
-.nav_container {
+.nav__container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -7,11 +7,11 @@
   padding: 32px 64px;
 }
 
-.nav_logo {
+.nav__logo {
   width: 250px;
 }
 
-.nav_buttons {
+.nav__buttons__container {
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -19,12 +19,12 @@
   padding: 16px;
 }
 
-.nav_btn {
+.nav__btn {
   background-color: blue;
   color: aliceblue;
   cursor: pointer;
 }
 
-.nav_btn:first-child {
+.nav__btn:first-child {
   margin-right: 16px;
 }
