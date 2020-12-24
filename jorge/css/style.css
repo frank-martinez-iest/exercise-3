@@ -28,3 +28,38 @@
 .nav__btn:first-child {
   margin-right: 16px;
 }
+
+.main__container {
+  display: flex;
+  justify-content: center;
+  height: 75vh;
+}
+
+.register-form__container {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: dodgerblue;
+  border: 1px solid red;
+  margin: 32px;
+  padding: 32px;
+  border-radius: 4px;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-form__title {
+  margin-top: 0;
+}
+
+.register-form > label {
+  padding: 8px 0; 
+}
+
+.register-form__submit {
+  margin-top: 16px;
+  cursor: pointer;
+}
