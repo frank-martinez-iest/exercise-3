@@ -30,6 +30,9 @@ header {
     display: flex;
 }
 
+label {
+    display: none;
+}
 
 input {
     font-weight: 300;
