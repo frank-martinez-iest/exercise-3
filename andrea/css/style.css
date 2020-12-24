@@ -12,15 +12,36 @@ button {
     text-transform: capitalize;
     font-weight: 300;
     padding: 8px;
-    width: 132px;
+    width: 136px;
     height: 40px;
     margin: 16px 8px;
     border-radius: 8px;
 }
 
+h2 {
+    color: #F8ECDC;
+    font-size: 48px;
+    font-weight: 400;
+    text-transform: capitalize;
+}
+
+
 header {
     display: flex;
 }
+
+
+input {
+    font-weight: 300;
+    text-align: center;
+    width: 296px;
+    height: 32px;
+    margin: 8px 0 16px;
+    border: none;
+    border-radius: 4px;
+}
+
+/* CLASSES */
 
 .navbar {
     display: flex;
@@ -28,9 +49,15 @@ header {
     align-items: center;
 }
 
-.logotype {
+.logo {
+    width: 104px;
     margin-right: auto;
 }
+
+.logo-icon:hover {
+    color: #823E1D;
+}
+
 .card-img {
     display: flex;
     position: absolute;  
@@ -41,21 +68,23 @@ header {
     z-index: -1; 
 }
 
-#sign-btn {
+.navbar-sign {
     background-color:  #F8ECDC;
     color: #2E4F48;
 }
 
-#login-btn {
+.navbar-login {
     background-color: #2E4F48;
     color: #F8ECDC;
     margin-right: 32px;
 }
 
-#sign-btn:hover, #login-btn:hover {
-    background-color: rgba(221,133,92,1);
+.navbar-sign:hover, .navbar-login:hover {
+    background-color: #823E1D;
+    color: #F8ECDC;
 }
-.fab {
+
+.logo-icon {
     padding: 8px 16px;
     margin-left: 16px;
     margin-right: auto;
@@ -74,32 +103,101 @@ header {
     color: #F8ECDC;
     font-size: 40px;
     line-height: 2;
-    margin: 0 100px;
+    margin: 0 104px;
     width: 336px;
+}
+
+.register-form, .register-title, .login-title {
+    display: none;
+}
+
+
+.register-title, .login-title {
+    width: fit-content;
+    margin-left: 104px;
+}
+
+
+.login-title {
+    font-size: 56px;
+    margin-top: 160px;
+}
+
+.form__show {
+    display: flex;
+    flex-direction: column;
+    margin: 56px 104px; 
+}
+
+.form-alternative {
+    color: #2E4F48;
+    font-size: 12px;
+    margin: 0;
+    width: 296px;
+    text-align: center;
+}
+
+.primary-btn {
+    background-color: #2E4F48;
+    color: #F8ECDC;
+    width:  296px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+
+.secondary-btn {
+    background-color: #C4C8C6;
+    color: #2E4F48;
+    width: 296px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.primary-btn:hover, .secondary-btn:hover {
+    background-color: #823E1D;
+    color: #F8ECDC
 }
 
 
 @media (max-width: 1024px) {
     .card-img {
         margin: 0 auto;
-        right: 8px;
+        right: 160px;
+
     }
 
     .title {
-        margin-top: 332px;
+        margin: 104px auto 0;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
     .description {
+        font-size: 32px;
         text-align: center;
         margin-left: auto;
         margin-right: auto;
     }
+
+    .register-title, .login-title {
+        font-size: 64px;
+        justify-content: center;
+        margin: 88px auto auto;
+    }
+
+    .form__show {
+        align-items: center;
+        margin-top: 16px;
+    }
 }
 
-@media (max-width: 720px){
+@media (max-width: 768px){
+
+    .card-img {
+        right: 80px;
+    }
     .title {
         margin: 120px 0 0;
     }
@@ -107,23 +205,26 @@ header {
     .description{
         font-size: 32px;
     }
+
+    .register-title, .login-title {
+        font-size: 56px;
+        margin: 120px auto auto;
+    }
+
+    .form__show {
+        margin-top: 16px;
+        transform: none;
+    }
+    
 }
 
 @media (max-width: 500px){
-    .fab {
+    .logo-icon {
         font-size: 48px;
     }
 
-    #sign-btn, #login-btn {
-        width: 88px;
-    }
-
-    #login-btn {
-        margin-right: 24px;
-    }
-    
     .title {
-        margin: 160px 0 16px;
+        margin: 120px 0 16px;
         font-size: 64px;
     }
 
@@ -131,4 +232,15 @@ header {
         width: 248px;
         font-size: 24px;
     }
+
+    .register-title, .login-title {
+        font-size: 48px;
+        margin-top: 120px;
+    }
+
+    .form__show {
+        margin: 0 104px; 
+        transform: scale(0.8);
+    }
+
 }
