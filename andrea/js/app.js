@@ -1,67 +1,74 @@
 // buttons //
-var signUp = document.querySelector(".navbar-sign");
-var logIn = document.querySelector(".navbar-login");
+let signUpButton = document.querySelector("#navbar-sign");
+let logInButton = document.querySelector("#navbar-login");
 
-var create_btn = document.querySelector(".create-btn");
+let createButton = document.querySelector(".create-btn")
+
+let welcomeView = document.querySelector(".welcome-view")
 
 // form //
-var form = document.querySelector(".register-form");
+let form = document.querySelector(".register-form");
+let registerTitle = document.querySelector(".register-title");
+let logInTitle = document.querySelector(".login-title");
+let registerFields = document.querySelectorAll(".register-fields");
+
+let logInForm = document.querySelector(".login-form");
+let formAlternative = document.querySelector(".form-alternative");
 
 // passwords //
-var password = document.getElementById("password");
-var confirm_password = document.getElementById("confirm-password");
+let password = document.getElementById("password");
+let confirmPassword = document.getElementById("confirm-password");
 
 // show register form //
 function showRegister() {
-    document.querySelector(".title").style.display = "none";
-    document.querySelector(".description").style.display = "none";
-    signUp.style.display = "none";
-    logIn.style.display = "none";
+    welcomeView.classList.add("hidden");
+    signUpButton.classList.add("hidden");
+    logInButton.classList.add("hidden");
     form.classList.add("form__show");
-    document.querySelector(".register-title").style.display = "flex";
-    signUp.removeEventListener("click", showRegister);
+    registerTitle.classList.remove("hidden");
+    signUpButton.removeEventListener("click", showRegister);
 }
 
-signUp.addEventListener("click", showRegister);
-
+signUpButton.addEventListener("click", showRegister);
 
 // show log in form //
-
 function showLogin() {
-    signUp.style.display = "none";
-    logIn.style.display = "none";
     form.classList.add("form__show");
-    document.querySelector(".login-title").style.display = "flex";
-    document.querySelector(".title").style.display = "none";
-    document.querySelector(".description").style.display = "none";
-    document.querySelector("#phone-number").style.display = "none";
-    document.querySelector("#email").style.display = "none";
-    document.querySelector("#confirm-password").style.display = "none";
-    document.querySelector(".create-btn").style.display = "none";
-    document.querySelector(".login-btn").classList.add("primary-btn");  
-    document.querySelector(".login-btn").classList.remove("secondary-btn");  
-    document.querySelector(".form-alternative").style.display = "none";
+    registerTitle.classList.add("hidden");
+    signUpButton.classList.add("hidden");
+    logInButton.classList.add("hidden");
+    createButton.classList.add("hidden");
+    welcomeView.classList.add("hidden");
+    formAlternative.classList.add("hidden");
+    logInTitle.classList.remove("hidden");
+    logInForm.classList.add("primary-btn");
+    logInForm.classList.remove("secondary-btn");
 
-    logIn.removeEventListener("click", showLogin);
+    registerFields.forEach(element => {
+        element.classList.add("hidden");
+    });
+
+    logInButton.removeEventListener("click", showLogin);
 }
 
-logIn.addEventListener("click", showLogin);
+logInButton.addEventListener("click", showLogin);
+logInForm.addEventListener("click", showLogin);
 
 // create account button //
 
-create_btn.addEventListener("click", ()=> {
+createButton.addEventListener("click", ()=> {
     console.log("Create Account button clicked");
 })
 
 // validate password //
 
 function validatePassword(){
-    if(password.value != confirm_password.value){
-        confirm_password.setCustomValidity("Passwords Don't Match");
+    if(password.value !== confirmPassword.value){
+        confirmPassword.setCustomValidity("Passwords don't match");
     }else {
-        confirm_password.setCustomValidity('');
+        confirmPassword.setCustomValidity('');
     }
 }
 
 password.onchange = validatePassword;
-confirm_password.onkeyup = validatePassword;
+confirmPassword.onkeyup = validatePassword;

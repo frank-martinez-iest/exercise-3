@@ -46,6 +46,10 @@ input {
 
 /* CLASSES */
 
+.hidden {
+    display: none;
+}
+
 .navbar {
     display: flex;
     width: 100%;
@@ -94,7 +98,7 @@ input {
     color: #2E4F48;
 }
 
-.title {
+.welcome-title {
     transition: font-size 200ms ease-in-out;
     font-weight: 400;
     font-size: 96px;
@@ -102,7 +106,7 @@ input {
     margin: 96px 96px 48px;
 }
 
-.description {
+.welcome-description {
     color: #F8ECDC;
     font-size: 40px;
     line-height: 2;
@@ -110,9 +114,9 @@ input {
     width: 336px;
 }
 
-.register-form, .register-title, .login-title {
+/* .register-form, .register-title, .login-title {
     display: none;
-}
+} */
 
 
 .register-title, .login-title {
@@ -170,14 +174,14 @@ input {
 
     }
 
-    .title {
+    .welcome-title {
         margin: 104px auto 0;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
-    .description {
+    .welcome-description {
         font-size: 32px;
         text-align: center;
         margin-left: auto;
@@ -201,11 +205,11 @@ input {
     .card-img {
         right: 80px;
     }
-    .title {
+    .welcome-title {
         margin: 120px 0 0;
     }
 
-    .description{
+    .welcome-description{
         font-size: 32px;
     }
 
@@ -226,12 +230,12 @@ input {
         font-size: 48px;
     }
 
-    .title {
+    .welcome-title {
         margin: 120px 0 16px;
         font-size: 64px;
     }
 
-    .description {
+    .welcome-description {
         width: 248px;
         font-size: 24px;
     }
