@@ -88,10 +88,11 @@ input {
   justify-content: center;
   background-color: #f0f2f5;
 }
-.account__register {
+.form {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  width: 100%;
+  max-width: 400px;
   padding: 24px;
   background: #fff;
   border: none;
@@ -99,8 +100,25 @@ input {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
 }
-.account__register * {
-  margin-bottom: 16px;
+.form-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.form * {
+  margin-bottom: 8px;
+}
+.input--incorrect {
+  border: 1px solid #dc3545;
+}
+.input--correct {
+  border: 1px solid #28a745;
+}
+.error-message {
+  color: #dc3545;
+}
+.register--hidden {
+  display: none;
 }
 @media screen and (max-width: 768px) {
   .account {
