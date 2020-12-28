@@ -1,3 +1,0 @@
-export default function RegisterForm{
-    return "<div class="form-group"><label for="email">Email</label><input id="email" name="Email" type="email" autocomplete placeholder="myemail@gmail.com"><span class="error-message"></span></div><div class="form-group"><label for="password">Password</label><input id="password" name="Password" type="password"><span class="error-message"></span></div><div class="form-group"><label for="password_confirmation">Confirm Password</label><input id="password_confirmation" name="Confirmation" type="password">span class="error-message"></span></div>"
-}

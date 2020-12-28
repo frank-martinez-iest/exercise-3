@@ -4,28 +4,27 @@ export default class FormValidator{
         this.fields = fields
     }
     initialize(){
-        this.validateOnSubmit()
         this.validateOnEntry()
     }
     validateOnSubmit(){
-        this.form.addEventListener('submit',e=>{
-            e.preventDefault();
-            const responses = this.fields.map(field => {
-                const input = document.querySelector(`#${field}`);
-                return this.validateFields(input);
-            });
-            //If all the inputs have the class input--correct the function returns true 
-            //filter
-            const correctInputs = this.fields.filter(field =>{
-                //Check in the DOM if the field has the class input--correct
-                const input = document.querySelector(`#${field}`);
-                console.log(input.classList.contains('input--correct'));
-                if(input.classList.contains('input--correct')){
-                    return field
-                }
-            });
-            correctInputs.length == this.fields.length ? true : false
+        this.fields.map(field => {
+            const input = document.querySelector(`#${field}`);
+            this.validateFields(input);
         });
+        //If all the inputs have the class input--correct the function returns true 
+        const correctInputs = this.fields.filter(field =>{
+            //Check in the DOM if the field has the class input--correct
+            const input = document.querySelector(`#${field}`);
+            if(input.classList.contains('input--correct')){
+                return field
+            }
+        });
+        if(correctInputs.length == this.fields.length){
+            // All of the fields are good to go
+            return true
+        }else{
+            return false
+        }
     }
     validateOnEntry(){
         this.fields.forEach((field)=>{
@@ -68,5 +67,45 @@ export default class FormValidator{
             field.classList.add("input--incorrect");
             errormessage.innerText = message;
         }
+    }
+    updateFields(fields,formType){
+        if(formType === 'register'){
+            // If the current fields are less than combining the current fields with the new fields and deleting repeated elements
+            // That means that we haven't yet assigned the event listeners to the register form inputs
+
+            if(this.fields.length < [...new Set([...this.fields,...fields])].length){
+                // We havent assigned the event to the new inputs
+                this.fields = [...this.fields,...fields]
+                console.log(this.fields);
+                fields.forEach(field=>{
+                    const input = document.querySelector(`#${field}`)
+                    input.addEventListener('input',e=>{
+                        this.validateFields(input);
+                    })
+                });
+            }
+            //If not don't repeat the listener
+        }
+        if(formType == 'signin'){
+            if(this.fields.length > 2){
+                //This means register inputs have listeners
+                this.fields = fields // Set the fields to the default (which is signing)
+                // We have to delete the event listeners given to the inputs in register
+                const registerFields = [...fields]
+                registerFields.splice(2).forEach(field=>{
+                    const input = document.querySelector(`#${field}`)
+                    input.removeEventListener('input');
+                })
+            }
+        }
+    }
+    createObjectFromForm(){
+        let myObjectFromForm = {}
+        this.fields.forEach(field => {
+            const input = document.querySelector(`#${field}`)
+            myObjectFromForm[field] = input.value;
+        })
+        console.log(myObjectFromForm);
+        return myObjectFromForm
     }
 }
