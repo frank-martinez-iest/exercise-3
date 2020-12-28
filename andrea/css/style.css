@@ -18,6 +18,7 @@ button {
     border-radius: 8px;
 }
 
+
 h2 {
     color: #F8ECDC;
     font-size: 48px;
@@ -130,13 +131,14 @@ input {
     margin-top: 160px;
 }
 
-.form__show {
+.form {
     display: flex;
     flex-direction: column;
     margin: 56px 104px; 
 }
 
 .form-alternative {
+    background-color: transparent;
     color: #2E4F48;
     font-size: 12px;
     margin: 0;
@@ -144,7 +146,7 @@ input {
     text-align: center;
 }
 
-.primary-btn {
+.create-btn, .login-form {
     background-color: #2E4F48;
     color: #F8ECDC;
     width:  296px;
@@ -153,15 +155,7 @@ input {
 }
 
 
-.secondary-btn {
-    background-color: #C4C8C6;
-    color: #2E4F48;
-    width: 296px;
-    margin-left: 0;
-    margin-right: 0;
-}
-
-.primary-btn:hover, .secondary-btn:hover {
+.create-btn:hover, .login-form:hover {
     background-color: #823E1D;
     color: #F8ECDC
 }
@@ -194,7 +188,7 @@ input {
         margin: 88px auto auto;
     }
 
-    .form__show {
+    .form {
         align-items: center;
         margin-top: 16px;
     }
