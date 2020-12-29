@@ -46,6 +46,11 @@ export default class FormValidator{
 
         //Check if passwords are equal
         if(field.id === "password_confirmation"){
+            //quickly check that is not empty
+            if(field.value ===""){
+                this.setStatus(field,'Password confirmation cannot be empty','error')
+                return false
+            }
             const password = document.querySelector('#password');
             if(password.value.trim() === field.value.trim()){
                 //Passwords are matching
@@ -76,7 +81,6 @@ export default class FormValidator{
             if(this.fields.length < [...new Set([...this.fields,...fields])].length){
                 // We havent assigned the event to the new inputs
                 this.fields = [...this.fields,...fields]
-                console.log(this.fields);
                 fields.forEach(field=>{
                     const input = document.querySelector(`#${field}`)
                     input.addEventListener('input',e=>{
@@ -99,13 +103,12 @@ export default class FormValidator{
             }
         }
     }
-    createObjectFromForm(){
-        let myObjectFromForm = {}
+    parseFormData(){
+        const myObjectFromForm = {}
         this.fields.forEach(field => {
             const input = document.querySelector(`#${field}`)
             myObjectFromForm[field] = input.value;
         })
-        console.log(myObjectFromForm);
         return myObjectFromForm
     }
 }

@@ -4,49 +4,56 @@ const form = document.querySelector('.form');
 const signInBtn = document.querySelector("#signBtn");
 const registerBtn = document.querySelector("#registerBtn");
 const submitBtn = document.querySelector("#submit");
-const registerFields = document.querySelector("#register");
-let fields = ['name','phone'];
+const registerFields = document.querySelector("#register-fields");
+const boardWrapper = document.querySelector(".account__board-wrapper");
+const userDashboard = document.querySelector(".account__board-user");
+const welcomeSplash = document.querySelector('.account__splash-img');
+const accountSection =document.querySelector(".account");
+const fields = ['name','phone'];
 
+/*STRINGS*/
+const SIGN_IN = 'Sign In';
 registerFields.remove();
-signInBtn.addEventListener("click",e=>{
-    registerFields.classList.add("register--hidden");
+boardWrapper.remove();
+signInBtn.addEventListener("click",()=>{
+    registerFields.classList.add("register-fields--hidden");
     registerFields.remove();
-    submitBtn.innerText = "Sign In"
-    fields = ['name','phone']
-    validator.updateFields(fields,"signin")
+    submitBtn.innerText = SIGN_IN;
+    validator.updateFields(fields,"signin");
 
 })
-registerBtn.addEventListener("click",e=>{
+registerBtn.addEventListener("click",()=>{
     form.insertBefore(registerFields,submitBtn);
-    registerFields.classList.remove("register--hidden");
+    registerFields.classList.remove("register-fields--hidden");
     submitBtn.innerText = "Register"
-    const newFields= ['email','password','password_confirmation']
-    validator.updateFields(newFields,"register")
+    const registerFieldsNames= ['email','password','password_confirmation']
+    validator.updateFields(registerFieldsNames,"register")
 });
 submitBtn.addEventListener('click',e=>{
-    console.log("click");
     e.preventDefault();
-    if(validator.validateOnSubmit()){
+    const isFormValid = validator.validateOnSubmit()
+    if(isFormValid){
         // Fields are filled correctly now we check if user wants to register or login
-        if(submitBtn.innerText == 'Sign In'){
-            const loginUser = validator.createObjectFromForm()
-            const user = window.localStorage.getItem(`${loginUser.phone}`);
+        if(submitBtn.innerText == SIGN_IN){
+            const userData = validator.parseFormData();
+            const user = JSON.parse(window.localStorage.getItem(`${userData.phone}`));
+            console.log(user);
             if(user){
-                console.log("THE USER EXISTS");
-                
+                welcomeSplash.remove();
+                accountSection.appendChild(boardWrapper);
+                userDashboard.firstElementChild.innerHTML = `Welcome ${user.email}`
             }else{
                 alert("You are not Registerd, login instead?")
             }
         }
         else{
             // User wants to register.. save it to localstorage
-            const  registeredUser = validator.createObjectFromForm();
-            console.log(registeredUser);
-            window.localStorage.setItem(`${registeredUser.phone}`,JSON.stringify(registeredUser));
+            const  userData = validator.parseFormData();
+            window.localStorage.setItem(`${userData.phone}`,JSON.stringify(userData));
+            confirm("You are now part of BankApp go to login!")
         }
     }
 })
-
 
 const validator = new FormValidator(form,fields);
 validator.initialize()
