@@ -77,14 +77,14 @@ input {
 }
 
 .navbar-sign {
-    background-color:  #F8ECDC;
-    color: #2E4F48;
+    background-color: #2E4F48;
+    color: #F8ECDC;
 }
 
 .navbar-login {
-    background-color: #2E4F48;
-    color: #F8ECDC;
     margin-right: 32px;
+    background-color:  #F8ECDC;
+    color: #2E4F48;
 }
 
 .navbar-sign:hover, .navbar-login:hover {
@@ -144,6 +144,10 @@ input {
     margin: 0;
     width: 296px;
     text-align: center;
+}
+
+.form-alternative:hover {
+    color: #823E1D;
 }
 
 .create-btn, .login-form {

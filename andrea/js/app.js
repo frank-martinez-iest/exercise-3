@@ -1,39 +1,40 @@
 // buttons //
-let signUpButton = document.querySelector("#navbar-sign");
-let logInButton = document.querySelector("#navbar-login");
+const signUpButton = document.querySelector("#navbar-sign");
+const logInButton = document.querySelector("#navbar-login");
 
-let createButton = document.querySelector(".create-btn")
+const createButton = document.querySelector(".create-btn")
 
-let welcomeView = document.querySelector(".welcome-view")
+const welcomeView = document.querySelector(".welcome-view")
 
 // form //
-let form = document.querySelector(".register-form");
-let registerTitle = document.querySelector(".register-title");
-let logInTitle = document.querySelector(".login-title");
+const form = document.querySelector(".register-form");
+const registerTitle = document.querySelector(".register-title");
+const logInTitle = document.querySelector(".login-title");
 
-let registerFields = Array.from(document.querySelectorAll(".register-fields"));
+const registerFields = Array.from(document.querySelectorAll(".register-fields"));
 
+const logInForm = document.querySelector(".login-form");
+const formAlternative = document.querySelector(".form-alternative");
 
-let logInForm = document.querySelector(".login-form");
-let formAlternative = document.querySelector(".form-alternative");
-
-let registerHide = [welcomeView, signUpButton, logInButton];
-let logInHide = [registerTitle, signUpButton, logInButton, createButton, welcomeView, formAlternative];
-logInHide = logInHide.concat(registerFields);
+const registerHide = [welcomeView, signUpButton, logInButton];
+const logInHide = [registerTitle, signUpButton, logInButton, createButton, welcomeView, formAlternative, ...registerFields];
+// logInHide = logInHide.concat(registerFields);
 
 // passwords //
-let password = document.getElementById("password");
-let confirmPassword = document.getElementById("confirm-password");
+const password = document.getElementById("password");
+const confirmPassword = document.getElementById("confirm-password");
 
 // change visibility
 function visibilityToggle(element, method, classname){
-    if (Array.isArray(element)){
-        element.forEach(element => {
-            method === "add" ? element.classList.add(classname) : element.classList.remove(classname)
-        })
-    }else{
+    const elementArray = Array.isArray(element) ? element : [element]
+    // if (!Array.isArray(element)){
+    //     elementArray = [element]
+    // }else{
+    //     elementArray = element;
+    // }
+    elementArray.forEach(element => {
         method === "add" ? element.classList.add(classname) : element.classList.remove(classname)
-    }
+    })
 
 }
 
@@ -61,20 +62,23 @@ formAlternative.addEventListener("click", showLogin);
 // create account button //
 
 function createAccount(event){
-    let userEmail = document.querySelector("#email").value;
-    let userPassword = document.querySelector("#password").value;
+    event.preventDefault();
+    const credentials = {
+        "email": document.querySelector("#email").value,
+        "password": document.querySelector("#password").value
+    };
 
-    if (userEmail !== ''){
-        if (userEmail === localStorage.getItem('email')){
+    if (JSON.stringify(credentials.email) !== ''){
+        if (JSON.stringify(credentials.email) === localStorage.getItem('email')){
             alert("already registered");
+            return;
         }else{
             // local storage //
-            localStorage.setItem('email', userEmail);
-            localStorage.setItem('password', userPassword);
+            localStorage.setItem('email', JSON.stringify(credentials.email));
+            localStorage.setItem('password', JSON.stringify(credentials.password));
             showLogin();
         }
     }
-    event.preventDefault();
     createButton.removeEventListener("click", createAccount);
 }
 createButton.addEventListener("click", createAccount);
