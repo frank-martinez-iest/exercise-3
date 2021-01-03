@@ -29,7 +29,7 @@ export default class FormValidator{
     validateOnEntry(){
         this.fields.forEach((field)=>{
             const input = document.querySelector(`#${field}`);
-            input.addEventListener('input', event => {
+            input.addEventListener('input', () => {
                 this.validateFields(input);
             });
         });
@@ -73,36 +73,7 @@ export default class FormValidator{
             errormessage.innerText = message;
         }
     }
-    updateFields(fields,formType){
-        if(formType === 'register'){
-            // If the current fields are less than combining the current fields with the new fields and deleting repeated elements
-            // That means that we haven't yet assigned the event listeners to the register form inputs
 
-            if(this.fields.length < [...new Set([...this.fields,...fields])].length){
-                // We havent assigned the event to the new inputs
-                this.fields = [...this.fields,...fields]
-                fields.forEach(field=>{
-                    const input = document.querySelector(`#${field}`)
-                    input.addEventListener('input',e=>{
-                        this.validateFields(input);
-                    })
-                });
-            }
-            //If not don't repeat the listener
-        }
-        if(formType == 'signin'){
-            if(this.fields.length > 2){
-                //This means register inputs have listeners
-                this.fields = fields // Set the fields to the default (which is signing)
-                // We have to delete the event listeners given to the inputs in register
-                const registerFields = [...fields]
-                registerFields.splice(2).forEach(field=>{
-                    const input = document.querySelector(`#${field}`)
-                    input.removeEventListener('input');
-                })
-            }
-        }
-    }
     parseFormData(){
         const myObjectFromForm = {}
         this.fields.forEach(field => {

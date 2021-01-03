@@ -142,6 +142,15 @@ input {
 @media screen and (max-width: 768px) {
   .account {
     grid-template-columns: 100%;
-    grid-template-rows: 220px 50%;
+    grid-template-rows: 1fr 1fr;
+  }
+  .navbar {
+    padding: 20px;
+  }
+  .account__left-wrapper {
+    padding: 20px;
+  }
+  .account__board-wrapper {
+    padding: 20px;
   }
 }
