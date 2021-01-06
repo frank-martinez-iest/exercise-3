@@ -19,14 +19,22 @@ const addRegisterFieldsToValidator = () =>{
     // First step, combine the actual validator fields with the registerFields
     const fieldsCombined = [...validator.fields,...registerFieldsIds];
     // We have to filter the array to delete the repeated elements 
-    const updatedFormFields = fieldsCombined.filter((field,i)=> fieldsCombined.indexOf(field) === i);
-    validator.fields = updatedFormFields;
+    const newFilteredFormArray = [...new Set(fieldsCombined)]
+    validator.fields = newFilteredFormArray;
     registerFieldsIds.forEach(field=>{
         const input = document.querySelector(`#${field}`);
         input.addEventListener('input',()=>{
             validator.validateFields(input);
         });
     });
+}
+const parseFormData= ()=>{
+    const myObjectFromForm = {}
+    validator.fields.forEach(field => {
+        const input = document.querySelector(`#${field}`)
+        myObjectFromForm[field] = input.value;
+    })
+    return myObjectFromForm
 }
 
 signInBtn.addEventListener("click",()=>{
@@ -47,7 +55,7 @@ submitBtn.addEventListener('click',e=>{
     if(isFormValid){
         // Fields are filled correctly now we check if user wants to register or login
         if(submitBtn.innerText == SIGN_IN){
-            const userData = validator.parseFormData();
+            const userData = parseFormData();
             const user = JSON.parse(window.localStorage.getItem(`${userData.phone}`));
             console.log(user);
             if(user){
@@ -60,7 +68,7 @@ submitBtn.addEventListener('click',e=>{
         }
         else{
             // User wants to register.. save it to localstorage
-            const  userData = validator.parseFormData();
+            const  userData = parseFormData();
             window.localStorage.setItem(`${userData.phone}`,JSON.stringify(userData));
             confirm("You are now part of BankApp go to Sign In!");
         }

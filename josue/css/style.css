@@ -145,12 +145,12 @@ input {
     grid-template-rows: 1fr 1fr;
   }
   .navbar {
-    padding: 20px;
+    padding: 24px;
   }
   .account__left-wrapper {
-    padding: 20px;
+    padding: 24px;
   }
   .account__board-wrapper {
-    padding: 20px;
+    padding: 24px;
   }
 }

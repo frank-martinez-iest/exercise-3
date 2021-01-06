@@ -74,12 +74,4 @@ export default class FormValidator{
         }
     }
 
-    parseFormData(){
-        const myObjectFromForm = {}
-        this.fields.forEach(field => {
-            const input = document.querySelector(`#${field}`)
-            myObjectFromForm[field] = input.value;
-        })
-        return myObjectFromForm
-    }
 }
