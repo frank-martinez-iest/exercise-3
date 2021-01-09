@@ -1,0 +1,29 @@
+{
+  "name": "exercise-3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frank-martinez-iest/exercise-3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/frank-martinez-iest/exercise-3/issues"
+  },
+  "homepage": "https://github.com/frank-martinez-iest/exercise-3#readme",
+  "dependencies": {
+    "@testing-library/dom": "^7.29.2",
+    "@testing-library/jest-dom": "^5.11.8"
+  },
+  "devDependencies": {
+    "fs": "0.0.1-security",
+    "jest": "^26.6.3",
+    "jsdom": "^16.4.0",
+    "path": "^0.12.7"
+  }
+}

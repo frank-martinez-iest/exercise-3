@@ -9,9 +9,9 @@
 
   <link rel="manifest" href="site.webmanifest">
 
-  <!-- <link rel="stylesheet" href="css/normalize.css"> -->
-  <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -26,7 +26,7 @@
       <br><br>
       <h1 class="header center orange-text">Banking Application</h1>
 
-      <section id="welcomeWrapper" data-testId="welcome-wrapper">
+      <section id="welcomeWrapper">
         <div class="row center">
           <h5 class="header col s12 light">Welcome</h5>
         </div>
@@ -182,86 +182,8 @@
     </div>
   </footer>
 
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
-  <script>
-    const APP_BUTTONS = {
-    SHOW_LOGIN: document.querySelector("#showLogin"),
-    SHOW_SIGN_UP: document.querySelector("#showSignUp"),
-    LOGIN_CANCEL: document.querySelector("#loginCancel"),
-    SIGN_UP_CANCEL: document.querySelector("#signUpCancel"),
-    SUBMIT_LOGIN: document.querySelector("#submitLogin"),
-    SUBMIT_SIGN_UP: document.querySelector("#submitSignUp")
-  };
-
-    const APP_SECTIONS = {
-      WELCOME_WRAPPER: document.querySelector('#welcomeWrapper'),
-      LOGIN_WRAPPER: document.querySelector('#loginWrapper'),
-      SIGN_UP_WRAPPER: document.querySelector('#signUpWrapper')
-    };
-
-    const APP_FORMS = {
-      LOGIN_FORM: document.querySelector('#loginForm'),
-      SIGN_UP_FORM: document.querySelector('#signUpForm')
-    }
-
-    function toggleVisibility(...elements) {
-      elements.forEach(element => {
-        const isElementHidden = element.hasAttribute("hidden");
-        isElementHidden ? element.removeAttribute("hidden") : element.setAttribute("hidden", "")
-      });
-    }
-
-    function setClickHandlers(callback, ...buttons) {
-      buttons.forEach(button => button.addEventListener("click", callback));
-    }
-
-    function parseFormData(form) {
-      const data = {};
-      const formData = new FormData(form);
-      for (let formFields of formData) {
-        data[formFields[0]] = formFields[1];
-      }
-      return data;
-    }
-
-    function submitSignUp(event) {
-      console.log('submitting')
-      event.preventDefault();
-      const userData = parseFormData(APP_FORMS.SIGN_UP_FORM);
-      localStorage.setItem(userData.username, JSON.stringify(userData));
-      reloadPage();
-    }
-
-    function reloadPage(){
-      history.go(0);
-    }
-
-    function initialize() {
-      setClickHandlers(
-        ()=>{toggleVisibility(APP_SECTIONS.LOGIN_WRAPPER, APP_SECTIONS.WELCOME_WRAPPER)},
-        APP_BUTTONS.SHOW_LOGIN
-      );
-      setClickHandlers(
-        ()=>{toggleVisibility(APP_SECTIONS.SIGN_UP_WRAPPER, APP_SECTIONS.WELCOME_WRAPPER)},
-        APP_BUTTONS.SHOW_SIGN_UP
-      );
-      setClickHandlers(
-        reloadPage,
-        APP_BUTTONS.LOGIN_CANCEL, APP_BUTTONS.SIGN_UP_CANCEL
-      );
-
-      APP_FORMS.SIGN_UP_FORM.onsubmit = submitSignUp;
-
-      toggleVisibility(APP_SECTIONS.LOGIN_WRAPPER, APP_SECTIONS.SIGN_UP_WRAPPER);
-    }
-
-function sum2(a,b) {
-  return a + b;
-}
-
-    initialize();
-  </script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="js/app.js"></script>
 </body>
 
 </html>
