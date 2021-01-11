@@ -45,4 +45,31 @@ describe('Unit test login feature',()=>{
         /* REGISTER FIELDS DIV*/
         expect(container.querySelector('#register-fields')).not.toBeInTheDocument();
     });
+    it('updates submit btn when register btn gets clicked', async()=>{
+        const registerBtn = getByText(container,'Register');
+        fireEvent.click(registerBtn);
+        
+        expect(container.querySelector('#submit').innerText).toBe('Register');
+    });
+    it('adds register fields when register btn gets clicked',async()=>{
+        const registerBtn = getByText(container,'Register');
+        fireEvent.click(registerBtn);
+        /* REGISTER FIELDS DIV*/
+        expect(container.querySelector('#register-fields')).not.toBeNull();
+        /* Email Field*/
+        expect(getByText(container, 'Email')).toBeInTheDocument();
+        /* Password Field*/
+        expect(getByText(container,'Password')).toBeInTheDocument();
+        /* Password confirmation Field*/
+        expect(getByText(container, 'Confirm Password')).toBeInTheDocument();
+    });
+    it('shows error message when register fields are empty',async()=>{
+        const registerBtn = getByText(container,'Register');
+        fireEvent.click(registerBtn);
+        await fireEvent.click(registerBtn);
+
+       const errorMessageElement = await container.querySelector('.error-message');
+       expect(errorMessageElement.innerText).not.toBe('')
+
+    });
 })
