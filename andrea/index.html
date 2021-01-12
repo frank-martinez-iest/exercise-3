@@ -15,13 +15,273 @@
   <link rel="manifest" href="site.webmanifest">
   <link rel="apple-touch-icon" href="icon.png">
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500&display=swap" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500&display=swap" rel="stylesheet"> -->
 
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
-
+  <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous"> -->
+<!-- 
   <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css"> -->
+    <style>
+        body {
+    background: rgb(221,133,92);
+    background: linear-gradient(45deg, rgba(221,133,92,1) 0%, rgba(72,108,104,1) 100%, rgba(73,108,104,1) 100%);
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+}
 
+
+button {
+    border: none;
+    text-transform: capitalize;
+    font-weight: 300;
+    padding: 8px;
+    width: 136px;
+    height: 40px;
+    margin: 16px 8px;
+    border-radius: 8px;
+}
+
+
+h2 {
+    color: #F8ECDC;
+    font-size: 48px;
+    font-weight: 400;
+    text-transform: capitalize;
+}
+
+
+header {
+    display: flex;
+}
+
+label {
+    display: none;
+}
+
+input {
+    font-weight: 300;
+    text-align: center;
+    width: 296px;
+    height: 32px;
+    margin: 8px 0 16px;
+    border: none;
+    border-radius: 4px;
+}
+
+/* CLASSES */
+
+.hidden {
+    display: none;
+}
+
+.navbar {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.logo {
+    width: 104px;
+    margin-right: auto;
+}
+
+.logo-icon:hover {
+    color: #823E1D;
+}
+
+.card-img {
+    display: flex;
+    position: absolute;  
+    height: 100vh;
+    top: 0;
+    justify-content: center;
+    right: 200px; 
+    z-index: -1; 
+}
+
+.navbar-sign {
+    background-color: #2E4F48;
+    color: #F8ECDC;
+}
+
+.navbar-login {
+    margin-right: 32px;
+    background-color:  #F8ECDC;
+    color: #2E4F48;
+}
+
+.navbar-sign:hover, .navbar-login:hover {
+    background-color: #823E1D;
+    color: #F8ECDC;
+}
+
+.logo-icon {
+    padding: 8px 16px;
+    margin-left: 16px;
+    margin-right: auto;
+    color: #2E4F48;
+}
+
+.welcome-title {
+    transition: font-size 200ms ease-in-out;
+    font-weight: 400;
+    font-size: 96px;
+    color: #F8ECDC;
+    margin: 96px 96px 48px;
+}
+
+.welcome-user {
+    font-size: 50px;
+}
+
+.welcome-description {
+    color: #F8ECDC;
+    font-size: 40px;
+    line-height: 2;
+    margin: 0 104px;
+    width: 336px;
+}
+
+/* .register-form, .register-title, .login-title {
+    display: none;
+} */
+
+
+.register-title, .login-title {
+    width: fit-content;
+    margin-left: 104px;
+}
+
+
+.login-title {
+    font-size: 56px;
+    margin-top: 160px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    margin: 56px 104px; 
+}
+
+.form-alternative {
+    background-color: transparent;
+    color: #2E4F48;
+    font-size: 12px;
+    margin: 0;
+    width: 296px;
+    text-align: center;
+}
+
+.form-alternative:hover {
+    color: #823E1D;
+}
+
+.create-btn, .login-form {
+    background-color: #2E4F48;
+    color: #F8ECDC;
+    width:  296px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+
+.create-btn:hover, .login-form:hover {
+    background-color: #823E1D;
+    color: #F8ECDC
+}
+
+
+@media (max-width: 1024px) {
+    .card-img {
+        margin: 0 auto;
+        right: 160px;
+
+    }
+
+    .welcome-title {
+        margin: 104px auto 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .welcome-description {
+        font-size: 32px;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .register-title, .login-title {
+        font-size: 64px;
+        justify-content: center;
+        margin: 88px auto auto;
+    }
+
+    .form {
+        align-items: center;
+        margin-top: 16px;
+    }
+}
+
+@media (max-width: 768px){
+
+    .card-img {
+        right: 80px;
+    }
+    .welcome-title {
+        margin: 120px 0 0;
+    }
+
+    .welcome-user {
+        text-align: center;
+    }
+    
+    .welcome-description{
+        font-size: 32px;
+    }
+
+    .register-title, .login-title {
+        font-size: 56px;
+        margin: 120px auto auto;
+    }
+
+    .form__show {
+        margin-top: 16px;
+        transform: none;
+    }
+    
+}
+
+@media (max-width: 500px){
+    .logo-icon {
+        font-size: 48px;
+    }
+
+    .welcome-title {
+        margin: 120px 0 16px;
+        font-size: 64px;
+    }
+
+    .welcome-description {
+        width: 248px;
+        font-size: 24px;
+    }
+
+    .register-title, .login-title {
+        font-size: 48px;
+        margin-top: 120px;
+    }
+
+    .form__show {
+        margin: 0 104px; 
+        transform: scale(0.8);
+    }
+
+}
+    </style>
   <meta name="theme-color" content="#fafafa">
 </head>
 
@@ -40,27 +300,153 @@
       <h1 class="welcome-title">Welcome</h1>
       <p class="welcome-description">The most transparent & secure banking platform</p>
     </div>
-    <h2 class="register-title hidden">Register now</h2>
-    <h2 class="login-title hidden">Log in now</h2>
+    <h2 class="register-title" hidden>Register now</h2>
+    <h2 class="login-title" hidden>Log in now</h2>
     
-    <form class="register-form hidden" action="">
+    <form class="register-form" action="" hidden>
         <label for="name">Username</label>
-        <input type="text" id="name" placeholder="Username" required> 
+        <input type="text" id="name" placeholder="Username" data-test-id="login-username-input" required> 
         <label for="phone-number">Phone number</label>
         <input type="tel" id="phone-number" class="register-fields" placeholder="Phone Number" required>
         <label for="email">Email</label>
         <input type="email" id="email" class="register-fields" placeholder="Email" required> 
         <label for="password">Password</label>
-        <input type="password" id="password" placeholder="Password" required> 
+        <input type="password" id="password" placeholder="Password" data-test-id="login-password-input" required> 
         <label for="confirm-password">Confirm password</label>
         <input type="password" id="confirm-password" class="register-fields" placeholder="Confirm Password" required>
         <button class="create-btn" type="submit">Create account</button> 
         <button class="form-alternative"> Already have an account?</button>
-        <button class="login-form hidden" type="submit">Log In</</button>
+        <button class="login-form" hidden type="submit">Log In</</button>
     </form>
   </main>
 
-  <script src="js/app.js"></script>
+  <script>
+      // buttons //
+    const signUpButton = document.querySelector("#navbar-sign");
+    const logInButton = document.querySelector("#navbar-login");
+
+    const createButton = document.querySelector(".create-btn")
+
+    const welcomeView = document.querySelector(".welcome-view")
+    let welcomeTitle = document.querySelector(".welcome-title")
+    // form //
+    const form = document.querySelector(".register-form");
+    const registerTitle = document.querySelector(".register-title");
+    const logInTitle = document.querySelector(".login-title");
+
+    const registerFields = Array.from(document.querySelectorAll(".register-fields"));
+
+    const logInForm = document.querySelector(".login-form");
+    const formAlternative = document.querySelector(".form-alternative");
+
+    const registerHide = [welcomeView, signUpButton, logInButton];
+    const logInHide = [signUpButton, logInButton, createButton, welcomeView, formAlternative, ...registerFields];
+
+    // passwords //
+    const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("confirm-password");
+
+    // change visibility
+    function visibilityToggle(element){
+        const elementArray = Array.isArray(element) ? element : [element]
+        elementArray.forEach(element => {
+            const isElementHidden = element.hasAttribute("hidden");
+            isElementHidden ? element.removeAttribute("hidden") : element.setAttribute("hidden", "")
+        });
+
+    }
+
+    // show register form //
+    function showRegister() {
+        visibilityToggle(registerHide);
+        // visibilityToggle(form, "add", "form");
+        form.classList.add("form");
+        visibilityToggle(registerTitle);
+        signUpButton.removeEventListener("click", showRegister);
+    }
+
+    signUpButton.addEventListener("click", showRegister);
+
+    // show log in form //
+    function showLogin() {
+        form.classList.add("form");
+        // visibilityToggle(form, "add", "form");
+        visibilityToggle(logInHide);
+        visibilityToggle([logInTitle, logInForm]);
+        logInButton.removeEventListener("click", showLogin);
+    }
+
+    logInButton.addEventListener("click", showLogin);
+    formAlternative.addEventListener("click", showLogin);
+
+    function welcomeUser(){
+        // const username = JSON.parse(localStorage.getItem("email"));
+        // let password = JSON.parse(localStorage.getItem("password"));
+        const username = "andrea@gmail.com";
+        const password = "123";
+        const formPassword =document.querySelector("#password").value
+        const formUsername = document.querySelector("#name").value;
+        if(formUsername ===username && formPassword===password){
+            form.classList.remove("form");
+            // visibilityToggle(form, "remove", "form");
+            visibilityToggle([welcomeView, logInTitle, logInForm]);
+            welcomeTitle.classList.add("welcome-user");
+            // visibilityToggle(welcomeTitle, "add", "welcome-user")
+            welcomeTitle.innerHTML = "Welcome " + username;
+            
+        }else{
+            return false
+            // alert("Incorrect Username or Password.")
+        }
+    
+        logInForm.removeEventListener("click", welcomeUser);
+    }
+
+    logInForm.addEventListener("click", welcomeUser)
+
+
+
+    // create account button //
+    function createAccount(event){
+        event.preventDefault();
+        const credentials = {
+            "email": document.querySelector("#email").value,
+            "password": document.querySelector("#password").value
+        };
+
+        if (JSON.stringify(credentials.email) !== ''){
+            if (JSON.stringify(credentials.email) === localStorage.getItem('email')){
+                alert("already registered");
+                return;
+            }else{
+                // local storage //
+                localStorage.setItem('email', JSON.stringify(credentials.email));
+                localStorage.setItem('password', JSON.stringify(credentials.password));
+                showLogin();
+            }
+        }
+        createButton.removeEventListener("click", createAccount);
+    }
+    createButton.addEventListener("click", createAccount);
+
+    // validate password //
+
+    function validatePassword(){
+        if(password.value !== confirmPassword.value){
+            confirmPassword.setCustomValidity("Passwords don't match");
+        }else {
+            confirmPassword.setCustomValidity('');
+        }
+    }
+
+    password.onchange = validatePassword;
+    confirmPassword.onkeyup = validatePassword;
+
+
+
+
+  </script>
+
 </body>
 </html>
 

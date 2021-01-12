@@ -107,6 +107,10 @@ input {
     margin: 96px 96px 48px;
 }
 
+.welcome-user {
+    font-size: 50px;
+}
+
 .welcome-description {
     color: #F8ECDC;
     font-size: 40px;
@@ -207,6 +211,10 @@ input {
         margin: 120px 0 0;
     }
 
+    .welcome-user {
+        text-align: center;
+    }
+    
     .welcome-description{
         font-size: 32px;
     }

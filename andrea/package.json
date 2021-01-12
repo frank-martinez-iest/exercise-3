@@ -1,0 +1,20 @@
+{
+  "name": "exercise-3",
+  "version": "1.0.0",
+  "description": "Exercise 3 for Rockstar Engineers Mentorships",
+  "main": "js/app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Andrea Sosa",
+  "license": "ISC",
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.8",
+    "jest": "^26.6.3"
+  },
+  "dependencies": {
+    "@testing-library/dom": "^7.29.2",
+    "fs": "0.0.1-security",
+    "path": "^0.12.7"
+  }
+}
