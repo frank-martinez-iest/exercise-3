@@ -1,0 +1,30 @@
+.nav__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: blue;
+  padding: 32px 64px;
+}
+
+.nav__logo {
+  width: 250px;
+}
+
+.nav__buttons__container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: white;
+  padding: 16px;
+}
+
+.nav__btn {
+  background-color: blue;
+  color: aliceblue;
+  cursor: pointer;
+}
+
+.nav__btn:first-child {
+  margin-right: 16px;
+}

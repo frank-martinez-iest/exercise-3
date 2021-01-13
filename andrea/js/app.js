@@ -1,42 +1,44 @@
-// buttons //
-const signUpButton = document.querySelector("#navbar-sign");
-const logInButton = document.querySelector("#navbar-login");
+   // buttons //
+   const signUpButton = document.querySelector("#navbar-sign");
+   const logInButton = document.querySelector("#navbar-login");
 
-const createButton = document.querySelector(".create-btn")
+   const createButton = document.querySelector(".create-btn")
 
-const welcomeView = document.querySelector(".welcome-view")
-let welcomeTitle = document.querySelector(".welcome-title")
-// form //
-const form = document.querySelector(".register-form");
-const registerTitle = document.querySelector(".register-title");
-const logInTitle = document.querySelector(".login-title");
+   const welcomeView = document.querySelector(".welcome-view")
+   let welcomeTitle = document.querySelector(".welcome-title")
+   // form //
+   const form = document.querySelector(".register-form");
+   const registerTitle = document.querySelector(".register-title");
+   const logInTitle = document.querySelector(".login-title");
 
-const registerFields = Array.from(document.querySelectorAll(".register-fields"));
+   const registerFields = Array.from(document.querySelectorAll(".register-fields"));
 
-const logInForm = document.querySelector(".login-form");
-const formAlternative = document.querySelector(".form-alternative");
+   const logInForm = document.querySelector(".login-form");
+   const formAlternative = document.querySelector(".form-alternative");
 
-const registerHide = [welcomeView, signUpButton, logInButton];
-const logInHide = [registerTitle, signUpButton, logInButton, createButton, welcomeView, formAlternative, ...registerFields];
+   const registerHide = [welcomeView, signUpButton, logInButton];
+   const logInHide = [signUpButton, logInButton, createButton, welcomeView, formAlternative, ...registerFields];
 
-// passwords //
-const password = document.getElementById("password");
-const confirmPassword = document.getElementById("confirm-password");
+   // passwords //
+   const password = document.getElementById("password");
+   const confirmPassword = document.getElementById("confirm-password");
+
 
 // change visibility
-function visibilityToggle(element, method, classname){
+function visibilityToggle(element){
     const elementArray = Array.isArray(element) ? element : [element]
     elementArray.forEach(element => {
-        method === "add" ? element.classList.add(classname) : element.classList.remove(classname)
-    })
+        const isElementHidden = element.hasAttribute("hidden");
+        isElementHidden ? element.removeAttribute("hidden") : element.setAttribute("hidden", "")
+    });
 
 }
 
 // show register form //
 function showRegister() {
-    visibilityToggle(registerHide, "add", "hidden");
-    visibilityToggle(form, "add", "form");
-    visibilityToggle(registerTitle, "remove", "hidden");
+    form.classList.add("form");
+    visibilityToggle([registerHide, registerTitle]);
+    // visibilityToggle(registerTitle);
     signUpButton.removeEventListener("click", showRegister);
 }
 
@@ -44,31 +46,31 @@ signUpButton.addEventListener("click", showRegister);
 
 // show log in form //
 function showLogin() {
-    visibilityToggle(form, "add", "form");
-    visibilityToggle(logInHide, "add", "hidden");
-    visibilityToggle([logInTitle, logInForm], "remove", "hidden");
+    form.classList.add("form");
+    // visibilityToggle(logInHide);
+    visibilityToggle([logInHide, logInTitle, logInForm]);
     logInButton.removeEventListener("click", showLogin);
 }
 
 logInButton.addEventListener("click", showLogin);
 formAlternative.addEventListener("click", showLogin);
 
-function welcomeUser(){
+function welcomeUser(event){
+    event.preventDefault();
     const username = JSON.parse(localStorage.getItem("email"));
     let password = JSON.parse(localStorage.getItem("password"));
     const formPassword =document.querySelector("#password").value
     const formUsername = document.querySelector("#name").value;
     if(formUsername ===username && formPassword===password){
-        visibilityToggle(welcomeView, "remove", "hidden");
-        visibilityToggle(form, "remove", "form");
-        visibilityToggle([logInTitle, logInForm], "add", "hidden");
-        visibilityToggle(welcomeTitle, "add", "welcome-user")
+        form.classList.remove("form");
+        visibilityToggle([welcomeView, logInTitle, logInForm]);
+        welcomeTitle.classList.add("welcome-user");
         welcomeTitle.innerHTML = "Welcome " + username;
         
     }else{
         alert("Incorrect Username or Password.")
     }
-  
+
     logInForm.removeEventListener("click", welcomeUser);
 }
 
