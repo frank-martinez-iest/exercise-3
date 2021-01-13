@@ -1,4 +1,6 @@
 const APP_BUTTONS = {
+  NAV_LOGIN: document.querySelector("#navLogin"),
+  NAV_SIGN_UP: document.querySelector("#navSignUp"),
   SHOW_LOGIN: document.querySelector("#showLogin"),
   SHOW_SIGN_UP: document.querySelector("#showSignUp"),
   LOGIN_CANCEL: document.querySelector("#loginCancel"),
@@ -52,11 +54,11 @@ function reloadPage(){
 function initialize() {
   setClickHandlers(
     ()=>{toggleVisibility(APP_SECTIONS.LOGIN_WRAPPER, APP_SECTIONS.WELCOME_WRAPPER)},
-    APP_BUTTONS.SHOW_LOGIN
+    APP_BUTTONS.SHOW_LOGIN, APP_BUTTONS.NAV_LOGIN
   );
   setClickHandlers(
     ()=>{toggleVisibility(APP_SECTIONS.SIGN_UP_WRAPPER, APP_SECTIONS.WELCOME_WRAPPER)},
-    APP_BUTTONS.SHOW_SIGN_UP
+    APP_BUTTONS.SHOW_SIGN_UP, APP_BUTTONS.NAV_SIGN_UP
   );
   setClickHandlers(
     reloadPage,

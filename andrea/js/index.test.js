@@ -7,13 +7,16 @@ const path = require('path');
 
 const html = fs.readFileSync(path.resolve(__dirname, '../index.html'), 'utf8');
 let dom;
+let window;
+let document;
 let container;
+let scriptElement;
 
 describe('index.html', () => {
     beforeEach(() => {
         dom = new JSDOM(html, {runScripts: 'dangerously', resources: 'usable'});
         container = dom.window.document;
-    })
+    });
 
     it('verify that first content is the Welcome View', () => {
         const welcomeView = container.querySelector(".welcome-view");
@@ -43,7 +46,7 @@ describe('index.html', () => {
         let userEmail =  "a@gmail.com"
         let userPassword ="123"
         localStorage.setItem('email', userEmail);
-        localStorage.setItem('password', userPassword)
+        localStorage.setItem('password', userPassword);
         expect(localStorage.store).toEqual({email: userEmail, password: userPassword});
     });
 
