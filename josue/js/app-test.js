@@ -21,12 +21,7 @@ class FormValidator{
                 return field
             }
         });
-        if(correctInputs.length == this.fields.length){
-            // All of the fields are good to go
-            return true
-        }else{
-            return false
-        }
+        return correctInputs.length === this.fields.length;
     }
     validateOnEntry(){
         this.fields.forEach((field)=>{
@@ -65,7 +60,7 @@ class FormValidator{
     }
     setStatus(field,message,status){
         const errormessage = field.parentElement.querySelector('.error-message');
-        if(status == 'success'){
+        if(status === 'success'){
             field.classList.remove("input--incorrect");
             field.classList.add("input--correct")
             errormessage.innerText = "";
