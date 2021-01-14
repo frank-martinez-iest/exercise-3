@@ -96,7 +96,8 @@ const addRegisterFieldsToValidator = () =>{
     validator.fields = newFilteredFormArray;
     registerFieldsIds.forEach(field=>{
         const input = document.querySelector(`#${field}`);
-        input.addEventListener('input',()=>{
+        // Had to change listener form input to change due to tests conflicts
+        input.addEventListener('change',()=>{
             validator.validateFields(input);
         });
     });
