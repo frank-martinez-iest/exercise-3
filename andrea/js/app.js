@@ -6,17 +6,18 @@
 
    const welcomeView = document.querySelector(".welcome-view")
    let welcomeTitle = document.querySelector(".welcome-title")
+   const welcomeDescription = document.querySelector(".welcome-description")
+   const features = document.querySelector(".features")
    // form //
-   const form = document.querySelector(".register-form");
+   const form = document.querySelector(".form");
    const registerTitle = document.querySelector(".register-title");
    const logInTitle = document.querySelector(".login-title");
 
    const registerFields = Array.from(document.querySelectorAll(".register-fields"));
 
-   const logInForm = document.querySelector(".login-form");
+   const logInForm = document.querySelector(".form-login__btn");
    const formAlternative = document.querySelector(".form-alternative");
 
-   const registerHide = [welcomeView, signUpButton, logInButton];
    const logInHide = [signUpButton, logInButton, createButton, welcomeView, formAlternative, ...registerFields];
 
    // passwords //
@@ -36,9 +37,8 @@ function visibilityToggle(element){
 
 // show register form //
 function showRegister() {
-    form.classList.add("form");
-    visibilityToggle([registerHide, registerTitle]);
-    // visibilityToggle(registerTitle);
+    form.classList.add("form-style");
+    visibilityToggle([form, signUpButton, logInButton, registerTitle, welcomeView]);
     signUpButton.removeEventListener("click", showRegister);
 }
 
@@ -46,9 +46,8 @@ signUpButton.addEventListener("click", showRegister);
 
 // show log in form //
 function showLogin() {
-    form.classList.add("form");
-    // visibilityToggle(logInHide);
-    visibilityToggle([logInHide, logInTitle, logInForm]);
+    form.classList.add("form-style");
+    visibilityToggle([form, logInTitle, logInForm, ...logInHide]);
     logInButton.removeEventListener("click", showLogin);
 }
 
@@ -62,11 +61,11 @@ function welcomeUser(event){
     const formPassword =document.querySelector("#password").value
     const formUsername = document.querySelector("#name").value;
     if(formUsername ===username && formPassword===password){
-        form.classList.remove("form");
-        visibilityToggle([welcomeView, logInTitle, logInForm]);
+        form.classList.remove("form-style");
+        features.classList.add("features-style")
         welcomeTitle.classList.add("welcome-user");
+        visibilityToggle([features, welcomeView, logInTitle, form, logInForm, welcomeDescription]);
         welcomeTitle.innerHTML = "Welcome " + username;
-        
     }else{
         alert("Incorrect Username or Password.")
     }

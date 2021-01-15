@@ -87,7 +87,7 @@ input {
     color: #2E4F48;
 }
 
-.navbar-sign:hover, .navbar-login:hover {
+.navbar-sign:hover, .navbar-login:hover, .features-button:hover {
     background-color: #823E1D;
     color: #F8ECDC;
 }
@@ -119,10 +119,6 @@ input {
     width: 336px;
 }
 
-/* .register-form, .register-title, .login-title {
-    display: none;
-} */
-
 
 .register-title, .login-title {
     width: fit-content;
@@ -135,7 +131,7 @@ input {
     margin-top: 160px;
 }
 
-.form {
+.form-style {
     display: flex;
     flex-direction: column;
     margin: 56px 104px; 
@@ -154,7 +150,7 @@ input {
     color: #823E1D;
 }
 
-.create-btn, .login-form {
+.create-btn, .form-login__btn {
     background-color: #2E4F48;
     color: #F8ECDC;
     width:  296px;
@@ -163,10 +159,23 @@ input {
 }
 
 
-.create-btn:hover, .login-form:hover {
+.create-btn:hover, .form-login__btn:hover {
     background-color: #823E1D;
     color: #F8ECDC
 }
+
+.features-style {
+    display: flex;
+    margin-left: 96px;
+    margin-top: 32px;
+}
+
+.features-button {
+    background-color: #F8ECDC;
+    color: #823E1D;
+    margin-right: 72px ;
+}
+
 
 
 @media (max-width: 1024px) {
@@ -199,6 +208,11 @@ input {
     .form {
         align-items: center;
         margin-top: 16px;
+    }
+
+    .features-style {
+        flex-direction: column;
+        align-items: center;
     }
 }
 
