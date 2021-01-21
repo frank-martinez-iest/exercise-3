@@ -37,7 +37,8 @@ describe('index.html', () => {
         const form = container.querySelector(".form");
         fireEvent.click(navbarSign);
         expect(registerTitle.hasAttribute("hidden")).toBeFalsy();
-        expect(form.hasAttribute("hidden")).toBeFalsy();
+        // expect(form.("hidden")).toBeFalsy();
+        expect(form.classList.contains("form--visibility")).toBeTruthy();
     })
 
     it('shows login view when login button is cliked', () => {
@@ -46,7 +47,7 @@ describe('index.html', () => {
         const form = container.querySelector(".form")
         fireEvent.click(navbarLogin);
         expect(loginTitle.hasAttribute("hidden")).toBeFalsy();
-        expect(form.hasAttribute("hidden")).toBeFalsy();
+        expect(form.classList.contains("form--visibility")).toBeTruthy();
     })
 
     it('checks that local storage is initialized properly', () => expect(localStorage.store).toEqual({}));
@@ -54,19 +55,23 @@ describe('index.html', () => {
     it ("checks that local storage was saved", () => {
         const signUpButton = container.querySelector("#navbar-sign");
         fireEvent.click(signUpButton)
-        let userEmail =  "a@gmail.com"
-        let userPassword ="123"
+        const userEmail =  "a@gmail.com";
+        const userPassword = "123";
+        const userBalance = "0";
         localStorage.setItem("email", userEmail);
         localStorage.setItem("password", userPassword);
-        expect(localStorage.store).toEqual({email: userEmail, password: userPassword});
+        localStorage.setItem("balance", userBalance);
+        expect(localStorage.store).toEqual({email: userEmail, password: userPassword, balance: userBalance});
     });
 
     it ("checks that local storage getItem works properly", () => {
         expect(localStorage.getItem("email")).toEqual("a@gmail.com");
+        expect(localStorage.getItem("balance")).toEqual("0");
         expect(localStorage.getItem("address")).toEqual(undefined);
     });
 
     it('shows welcome view when login matches localstorage', () => {
+        const form = container.querySelector(".form")
         const navbarLogin = container.querySelector(".navbar-login");
         fireEvent.click(navbarLogin);
         const formLoginBtn = container.querySelector(".login-form__btn");
@@ -77,10 +82,24 @@ describe('index.html', () => {
         expect(username.innerHTML).toEqual("andrea@gmail.com");
         expect(password.innerHTML).toEqual("123")
         fireEvent.click(formLoginBtn)
-        expect(container.querySelector(".form").hasAttribute("hidden")).toBeTruthy();
+        expect(form.classList.contains("form--visibility")).toBeFalsy();
         expect(container.querySelector(".welcome-view").hasAttribute("hidden")).toBeFalsy();
     })
    
+    it("checks that transfer and withdraw buttons are disabled if balance is 0", () => {
+        const navbarLogin = container.querySelector(".navbar-login");
+        fireEvent.click(navbarLogin);
+        const formLoginBtn = container.querySelector(".login-form__btn");
+        let username = container.querySelector("#name");
+        let password = container.querySelector("#password");
+        username.innerHTML = "andrea@gmail.com";
+        password.innerHTML = "123";
+        fireEvent.click(formLoginBtn)
+        expect(container.querySelector(".balance-description")).toBeInTheDocument();
+        expect(container.querySelector(".balance-description").innerHTML).toEqual("Your balance is $0.00")
+        expect(container.querySelector("#withdraw-btn").hasAttribute("disabled")).toBeTruthy();
+        expect(container.querySelector("#transfer-btn").hasAttribute("disabled")).toBeTruthy();
+     })
 
 });
     
