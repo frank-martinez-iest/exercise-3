@@ -87,7 +87,7 @@ input {
     color: #2E4F48;
 }
 
-.navbar-sign:hover, .navbar-login:hover, .features-button:hover {
+.navbar-sign:hover, .navbar-login:hover, .features__button:hover {
     background-color: #823E1D;
     color: #F8ECDC;
 }
@@ -131,13 +131,13 @@ input {
     margin-top: 160px;
 }
 
-.form-style {
+.form--visibility {
     display: flex;
     flex-direction: column;
     margin: 56px 104px; 
 }
 
-.form-alternative {
+.form__alternative {
     background-color: transparent;
     color: #2E4F48;
     font-size: 12px;
@@ -150,7 +150,7 @@ input {
     color: #823E1D;
 }
 
-.create-btn, .form-login__btn {
+.create__btn, .login-form__btn {
     background-color: #2E4F48;
     color: #F8ECDC;
     width:  296px;
@@ -159,7 +159,7 @@ input {
 }
 
 
-.create-btn:hover, .form-login__btn:hover {
+.create__btn:hover, .login-form__btn:hover {
     background-color: #823E1D;
     color: #F8ECDC
 }
@@ -170,7 +170,7 @@ input {
     margin-top: 32px;
 }
 
-.features-button {
+.features__button {
     background-color: #F8ECDC;
     color: #823E1D;
     margin-right: 72px ;

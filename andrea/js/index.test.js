@@ -49,23 +49,27 @@ describe('index.html', () => {
         expect(form.hasAttribute("hidden")).toBeFalsy();
     })
 
-    it('cheks that local storage is initialized properly', () => expect(localStorage.store).toEqual({}));
+    it('checks that local storage is initialized properly', () => expect(localStorage.store).toEqual({}));
 
-        
     it ("checks that local storage was saved", () => {
         const signUpButton = container.querySelector("#navbar-sign");
         fireEvent.click(signUpButton)
         let userEmail =  "a@gmail.com"
         let userPassword ="123"
-        localStorage.setItem('email', userEmail);
-        localStorage.setItem('password', userPassword);
+        localStorage.setItem("email", userEmail);
+        localStorage.setItem("password", userPassword);
         expect(localStorage.store).toEqual({email: userEmail, password: userPassword});
+    });
+
+    it ("checks that local storage getItem works properly", () => {
+        expect(localStorage.getItem("email")).toEqual("a@gmail.com");
+        expect(localStorage.getItem("address")).toEqual(undefined);
     });
 
     it('shows welcome view when login matches localstorage', () => {
         const navbarLogin = container.querySelector(".navbar-login");
         fireEvent.click(navbarLogin);
-        const formLoginBtn = container.querySelector(".form-login__btn");
+        const formLoginBtn = container.querySelector(".login-form__btn");
         let username = container.querySelector("#name");
         let password = container.querySelector("#password");
         username.innerHTML = "andrea@gmail.com";

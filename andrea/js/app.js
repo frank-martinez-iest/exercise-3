@@ -2,7 +2,7 @@
    const signUpButton = document.querySelector("#navbar-sign");
    const logInButton = document.querySelector("#navbar-login");
 
-   const createButton = document.querySelector(".create-btn")
+   const createButton = document.querySelector(".create__btn")
 
    const welcomeView = document.querySelector(".welcome-view")
    let welcomeTitle = document.querySelector(".welcome-title")
@@ -15,8 +15,8 @@
 
    const registerFields = Array.from(document.querySelectorAll(".register-fields"));
 
-   const logInForm = document.querySelector(".form-login__btn");
-   const formAlternative = document.querySelector(".form-alternative");
+   const logInForm = document.querySelector(".login-form__btn");
+   const formAlternative = document.querySelector(".form__alternative");
 
    const logInHide = [signUpButton, logInButton, createButton, welcomeView, formAlternative, ...registerFields];
 
@@ -37,7 +37,7 @@ function visibilityToggle(element){
 
 // show register form //
 function showRegister() {
-    form.classList.add("form-style");
+    form.classList.add("form--visibility");
     visibilityToggle([form, signUpButton, logInButton, registerTitle, welcomeView]);
     signUpButton.removeEventListener("click", showRegister);
 }
@@ -46,7 +46,7 @@ signUpButton.addEventListener("click", showRegister);
 
 // show log in form //
 function showLogin() {
-    form.classList.add("form-style");
+    form.classList.add("form--visibility");
     visibilityToggle([form, logInTitle, logInForm, ...logInHide]);
     logInButton.removeEventListener("click", showLogin);
 }
@@ -61,7 +61,7 @@ function welcomeUser(event){
     const formPassword =document.querySelector("#password").value
     const formUsername = document.querySelector("#name").value;
     if(formUsername ===username && formPassword===password){
-        form.classList.remove("form-style");
+        form.classList.remove("form--visibility");
         features.classList.add("features-style")
         welcomeTitle.classList.add("welcome-user");
         visibilityToggle([features, welcomeView, logInTitle, form, logInForm, welcomeDescription]);

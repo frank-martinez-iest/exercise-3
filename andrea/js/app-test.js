@@ -2,7 +2,7 @@
     const signUpButton = document.querySelector("#navbar-sign");
     const logInButton = document.querySelector("#navbar-login");
 
-    const createButton = document.querySelector(".create-btn")
+    const createButton = document.querySelector(".create__btn")
 
     const welcomeView = document.querySelector(".welcome-view")
     let welcomeTitle = document.querySelector(".welcome-title")
@@ -13,8 +13,8 @@
 
     const registerFields = Array.from(document.querySelectorAll(".register-fields"));
 
-    const logInForm = document.querySelector(".form-login__btn");
-    const formAlternative = document.querySelector(".form-alternative");
+    const logInForm = document.querySelector(".login-form__btn");
+    const formAlternative = document.querySelector(".form__alternative");
 
     const registerHide = [welcomeView, signUpButton, logInButton];
     const logInHide = [signUpButton, logInButton, createButton, welcomeView, formAlternative, ...registerFields];
@@ -35,7 +35,7 @@
 
     // show register form //
     function showRegister() {        
-        form.classList.add("form-style");
+        form.classList.add("form--visibility");
         // visibilityToggle(registerHide);
         visibilityToggle([form, registerTitle,...registerHide]);
         signUpButton.removeEventListener("click", showRegister);
@@ -45,7 +45,7 @@
 
     // show log in form //
     function showLogin() {
-        form.classList.add("form-style");
+        form.classList.add("form--visibility");
         // visibilityToggle(logInHide);
         visibilityToggle([form, logInTitle, logInForm, ...logInHide]);
         logInButton.removeEventListener("click", showLogin);
@@ -61,7 +61,7 @@
         const formPassword =document.querySelector("#password").innerHTML
         const formUsername = document.querySelector("#name").innerHTML;
         if(formUsername ===username && formPassword===password){
-            form.classList.remove("form-style");
+            form.classList.remove("form--visibility");
             welcomeTitle.classList.add("welcome-user");
             visibilityToggle([welcomeView, form, logInTitle, logInForm]);
             welcomeTitle.innerHTML = "Welcome " + username;
