@@ -164,7 +164,7 @@ input {
     color: #F8ECDC
 }
 
-.features-style {
+.features--visibility {
     display: flex;
     margin-left: 96px;
     margin-top: 32px;
@@ -210,7 +210,7 @@ input {
         margin-top: 16px;
     }
 
-    .features-style {
+    .features--visibility {
         flex-direction: column;
         align-items: center;
     }

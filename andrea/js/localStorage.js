@@ -7,7 +7,7 @@ module.exports =  new class {
     } else {
       return undefined;
     }
-  }
+}
   removeItem = key => {
     if (this.store.hasOwnProperty(key)) { 
       delete this.store[key]; 

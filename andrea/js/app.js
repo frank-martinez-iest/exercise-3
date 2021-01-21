@@ -38,16 +38,22 @@ function visibilityToggle(element){
 // show register form //
 function showRegister() {
     form.classList.add("form--visibility");
-    visibilityToggle([form, signUpButton, logInButton, registerTitle, welcomeView]);
+    visibilityToggle([signUpButton, logInButton, registerTitle, welcomeView]);
     signUpButton.removeEventListener("click", showRegister);
 }
 
 signUpButton.addEventListener("click", showRegister);
 
 // show log in form //
-function showLogin() {
+function showLogin(event) {
+    const buttonClicked = event.target.id;
+    console.log(buttonClicked);
     form.classList.add("form--visibility");
-    visibilityToggle([form, logInTitle, logInForm, ...logInHide]);
+    if (buttonClicked==="navbar-login"){
+        visibilityToggle([logInTitle, logInForm, ...logInHide]);
+    } else {
+        visibilityToggle([registerTitle, ...registerFields, createButton, formAlternative, logInTitle, logInForm]);
+    }
     logInButton.removeEventListener("click", showLogin);
 }
 
@@ -58,13 +64,13 @@ function welcomeUser(event){
     event.preventDefault();
     const username = JSON.parse(localStorage.getItem("email"));
     let password = JSON.parse(localStorage.getItem("password"));
+    const formUsername = document.querySelector("#email").value;
     const formPassword =document.querySelector("#password").value
-    const formUsername = document.querySelector("#name").value;
     if(formUsername ===username && formPassword===password){
         form.classList.remove("form--visibility");
-        features.classList.add("features-style")
+        features.classList.add("features--visibility")
         welcomeTitle.classList.add("welcome-user");
-        visibilityToggle([features, welcomeView, logInTitle, form, logInForm, welcomeDescription]);
+        visibilityToggle([features, welcomeView, logInTitle, logInForm, welcomeDescription]);
         welcomeTitle.innerHTML = "Welcome " + username;
     }else{
         alert("Incorrect Username or Password.")
@@ -93,7 +99,7 @@ function createAccount(event){
             // local storage //
             localStorage.setItem('email', JSON.stringify(credentials.email));
             localStorage.setItem('password', JSON.stringify(credentials.password));
-            showLogin();
+            visibilityToggle([...registerFields, registerTitle, createButton, formAlternative, logInTitle, logInForm])
         }
     }
     createButton.removeEventListener("click", createAccount);
