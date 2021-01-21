@@ -46,7 +46,7 @@ describe('index.html', () => {
         const form = container.querySelector(".form")
         fireEvent.click(navbarLogin);
         expect(loginTitle.hasAttribute("hidden")).toBeFalsy();
-        expect(form.hasAttribute("hidden")).toBeFalsy();
+        expect(form.classList.contains("form--visibility")).toBeTruthy();
     })
 
     it('checks that local storage is initialized properly', () => expect(localStorage.store).toEqual({}));
@@ -67,6 +67,7 @@ describe('index.html', () => {
     });
 
     it('shows welcome view when login matches localstorage', () => {
+        const form = container.querySelector(".form")
         const navbarLogin = container.querySelector(".navbar-login");
         fireEvent.click(navbarLogin);
         const formLoginBtn = container.querySelector(".login-form__btn");
@@ -77,7 +78,7 @@ describe('index.html', () => {
         expect(username.innerHTML).toEqual("andrea@gmail.com");
         expect(password.innerHTML).toEqual("123")
         fireEvent.click(formLoginBtn)
-        expect(container.querySelector(".form").hasAttribute("hidden")).toBeTruthy();
+        expect(form.classList.contains("form--visibility")).toBeFalsy();
         expect(container.querySelector(".welcome-view").hasAttribute("hidden")).toBeFalsy();
     })
    

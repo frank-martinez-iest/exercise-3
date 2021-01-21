@@ -47,7 +47,6 @@ signUpButton.addEventListener("click", showRegister);
 // show log in form //
 function showLogin(event) {
     const buttonClicked = event.target.id;
-    console.log(buttonClicked);
     form.classList.add("form--visibility");
     if (buttonClicked==="navbar-login"){
         visibilityToggle([logInTitle, logInForm, ...logInHide]);
@@ -80,7 +79,6 @@ function welcomeUser(event){
 }
 
 logInForm.addEventListener("click", welcomeUser)
-
 
 
 // create account button //
