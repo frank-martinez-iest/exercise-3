@@ -11,6 +11,7 @@ const welcomeSplash = document.querySelector('.account__splash-img');
 const accountSection =document.querySelector(".account");
 const fields = ['name','phone'];
 const registerFieldsIds = ['email','password','password_confirmation'];
+const registrationFormWrapper = document.querySelector('.account__left-wrapper');
 /*STRINGS*/
 const SIGN_IN = 'Sign In';
 const REGISTER = 'Register';
@@ -34,6 +35,7 @@ const parseFormData= ()=>{
         const input = document.querySelector(`#${field}`)
         myObjectFromForm[field] = input.value;
     })
+    myObjectFromForm["balance"] = 0;
     return myObjectFromForm
 }
 
@@ -60,8 +62,11 @@ submitBtn.addEventListener('click',e=>{
             console.log(user);
             if(user){
                 welcomeSplash.remove();
+                registrationFormWrapper.remove();
+                accountSection.classList.remove('account');                
+                accountSection.classList.add('dashboard');                
                 accountSection.appendChild(boardWrapper);
-                userDashboard.firstElementChild.innerHTML = `Welcome ${user.email}`;
+                loadUserDashboard(user);
             }else{
                 alert("You are not part of BankApp, want to register instead?");
             }
@@ -75,6 +80,15 @@ submitBtn.addEventListener('click',e=>{
     }
 });
 
+const loadUserDashboard = (user)=>{
+    userDashboard.firstElementChild.innerHTML = `Welcome ${user.email}`;
+    console.log(userDashboard.querySelector('#current-balance').innerText);
+    userDashboard.querySelector('#current-balance').innerText = `Your current balance is ${parseNumberToLocateString(user.balance)}`
+}
+
+const parseNumberToLocateString = (number)=> number.toLocaleString('en-US',{style : 'currency',currency:'USD'}
+
+)
 registerFieldsWrapper.remove();
 boardWrapper.remove();
 const validator = new FormValidator(form,fields);
