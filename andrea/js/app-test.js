@@ -6,6 +6,10 @@
 
     const welcomeView = document.querySelector(".welcome-view")
     let welcomeTitle = document.querySelector(".welcome-title")
+    const welcomeDescription = document.querySelector(".welcome-description")
+
+    const features = document.querySelector(".features");
+    
     // form //
     const form = document.querySelector(".form");
     const registerTitle = document.querySelector(".register-title");
@@ -30,13 +34,12 @@
             const isElementHidden = element.hasAttribute("hidden");
             isElementHidden ? element.removeAttribute("hidden") : element.setAttribute("hidden", "")
         });
-
     }
 
     // show register form //
     function showRegister() {        
-        form.classList.add("form--visibility");
-        visibilityToggle([form, registerTitle,...registerHide]);
+        form.classList.add("form--visible");
+        visibilityToggle([signUpButton, logInButton, registerTitle, welcomeView]);
         signUpButton.removeEventListener("click", showRegister);
     }
 
@@ -44,12 +47,12 @@
 
     // show log in form //
     function showLogin(event) {
-        form.classList.add("form--visibility");
+        form.classList.add("form--visible");
         const buttonClicked = event.target.id;
         buttonClicked === "navbar-login" ? visibilityToggle([logInTitle, logInForm, ...logInHide])
         : visibilityToggle([registerTitle, ...registerFields, createButton, formAlternative, logInTitle, logInForm]);
-    logInButton.removeEventListener("click", showLogin);
-}
+        logInButton.removeEventListener("click", showLogin);
+    }
 
     logInButton.addEventListener("click", showLogin);
     formAlternative.addEventListener("click", showLogin);
@@ -61,9 +64,10 @@
         const formPassword =document.querySelector("#password").innerHTML
         const formUsername = document.querySelector("#name").innerHTML;
         if(formUsername ===username && formPassword===password){
-            form.classList.remove("form--visibility");
+            form.classList.remove("form--visible");
+            features.classList.add("features--visible")
             welcomeTitle.classList.add("welcome-user");
-            visibilityToggle([welcomeView, form, logInTitle, logInForm]);
+            visibilityToggle([welcomeView, logInTitle, logInForm, welcomeDescription]);
             welcomeTitle.innerHTML = "Welcome " + username;
         }else{
             alert("Incorrect Username or Password.")
@@ -79,7 +83,7 @@
         event.preventDefault();
         const credentials = {
             "email": document.querySelector("#email").value,
-            "password": document.querySelector("#password").value
+            "password": document.querySelector("#password").value,
         };
 
         if (JSON.stringify(credentials.email) !== ''){
@@ -90,13 +94,14 @@
                 // local storage //
                 localStorage.setItem('email', JSON.stringify(credentials.email));
                 localStorage.setItem('password', JSON.stringify(credentials.password));
-                showLogin();
+                visibilityToggle([...registerFields, registerTitle, createButton, formAlternative, logInTitle, logInForm])
             }
         }
         createButton.removeEventListener("click", createAccount);
     }
     createButton.addEventListener("click", createAccount);
 
+  
     // validate password //
     function validatePassword(){
         if(password.value !== confirmPassword.value){

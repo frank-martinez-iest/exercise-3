@@ -37,7 +37,7 @@ function visibilityToggle(element){
 
 // show register form //
 function showRegister() {
-    form.classList.add("form--visibility");
+    form.classList.add("form--visible");
     visibilityToggle([signUpButton, logInButton, registerTitle, welcomeView]);
     signUpButton.removeEventListener("click", showRegister);
 }
@@ -46,7 +46,7 @@ signUpButton.addEventListener("click", showRegister);
 
 // show log in form //
 function showLogin(event) {
-    form.classList.add("form--visibility");
+    form.classList.add("form--visible");
     const buttonClicked = event.target.id;
     buttonClicked === "navbar-login" ? visibilityToggle([logInTitle, logInForm, ...logInHide]) 
     : visibilityToggle([registerTitle, ...registerFields, createButton, formAlternative, logInTitle, logInForm]);
@@ -63,10 +63,10 @@ function welcomeUser(event){
     const formUsername = document.querySelector("#email").value;
     const formPassword =document.querySelector("#password").value
     if(formUsername ===username && formPassword===password){
-        form.classList.remove("form--visibility");
+        form.classList.remove("form--visible");
         features.classList.add("features--visible")
         welcomeTitle.classList.add("welcome-user");
-        visibilityToggle([features, welcomeView, logInTitle, logInForm, welcomeDescription]);
+        visibilityToggle([welcomeView, logInTitle, logInForm, welcomeDescription]);
         welcomeTitle.innerHTML = "Welcome " + username;
     }else{
         alert("Incorrect Username or Password.")

@@ -131,7 +131,7 @@ input {
     margin-top: 160px;
 }
 
-.form--visibility {
+.form--visible {
     display: flex;
     flex-direction: column;
     margin: 56px 104px; 
