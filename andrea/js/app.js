@@ -7,6 +7,7 @@
    const welcomeView = document.querySelector(".welcome-view")
    let welcomeTitle = document.querySelector(".welcome-title")
    const welcomeDescription = document.querySelector(".welcome-description")
+   
    const features = document.querySelector(".features")
    // form //
    const form = document.querySelector(".form");
