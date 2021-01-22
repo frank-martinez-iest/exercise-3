@@ -86,7 +86,7 @@ describe('index.html', () => {
         expect(container.querySelector(".welcome-view").hasAttribute("hidden")).toBeFalsy();
     })
    
-    it("checks that transfer and withdraw buttons are disabled if balance is 0", () => {
+    it("checks that balance description is added and that transfer and withdraw buttons are disabled if balance is 0", () => {
         const navbarLogin = container.querySelector(".navbar-login");
         fireEvent.click(navbarLogin);
         const formLoginBtn = container.querySelector(".login-form__btn");
@@ -100,6 +100,5 @@ describe('index.html', () => {
         expect(container.querySelector("#withdraw-btn").hasAttribute("disabled")).toBeTruthy();
         expect(container.querySelector("#transfer-btn").hasAttribute("disabled")).toBeTruthy();
      })
-
 });
     
