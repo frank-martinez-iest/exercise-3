@@ -36,7 +36,6 @@
     // show register form //
     function showRegister() {        
         form.classList.add("form--visibility");
-        // visibilityToggle(registerHide);
         visibilityToggle([form, registerTitle,...registerHide]);
         signUpButton.removeEventListener("click", showRegister);
     }
@@ -44,12 +43,13 @@
     signUpButton.addEventListener("click", showRegister);
 
     // show log in form //
-    function showLogin() {
+    function showLogin(event) {
         form.classList.add("form--visibility");
-        // visibilityToggle(logInHide);
-        visibilityToggle([form, logInTitle, logInForm, ...logInHide]);
-        logInButton.removeEventListener("click", showLogin);
-    }
+        const buttonClicked = event.target.id;
+        buttonClicked === "navbar-login" ? visibilityToggle([logInTitle, logInForm, ...logInHide])
+        : visibilityToggle([registerTitle, ...registerFields, createButton, formAlternative, logInTitle, logInForm]);
+    logInButton.removeEventListener("click", showLogin);
+}
 
     logInButton.addEventListener("click", showLogin);
     formAlternative.addEventListener("click", showLogin);

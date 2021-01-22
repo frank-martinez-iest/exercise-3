@@ -46,13 +46,10 @@ signUpButton.addEventListener("click", showRegister);
 
 // show log in form //
 function showLogin(event) {
-    const buttonClicked = event.target.id;
     form.classList.add("form--visibility");
-    if (buttonClicked==="navbar-login"){
-        visibilityToggle([logInTitle, logInForm, ...logInHide]);
-    } else {
-        visibilityToggle([registerTitle, ...registerFields, createButton, formAlternative, logInTitle, logInForm]);
-    }
+    const buttonClicked = event.target.id;
+    buttonClicked === "navbar-login" ? visibilityToggle([logInTitle, logInForm, ...logInHide]) 
+    : visibilityToggle([registerTitle, ...registerFields, createButton, formAlternative, logInTitle, logInForm]);
     logInButton.removeEventListener("click", showLogin);
 }
 
@@ -67,7 +64,7 @@ function welcomeUser(event){
     const formPassword =document.querySelector("#password").value
     if(formUsername ===username && formPassword===password){
         form.classList.remove("form--visibility");
-        features.classList.add("features--visibility")
+        features.classList.add("features--visible")
         welcomeTitle.classList.add("welcome-user");
         visibilityToggle([features, welcomeView, logInTitle, logInForm, welcomeDescription]);
         welcomeTitle.innerHTML = "Welcome " + username;
