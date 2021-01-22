@@ -9,9 +9,9 @@
     const welcomeDescription = document.querySelector(".welcome-description")
 
     // features
-const features = document.querySelector(".features")
-const withdrawButton = document.querySelector("#withdraw-btn")
-const transferButton = document.querySelector("#transfer-btn");
+    const features = document.querySelector(".features")
+    const withdrawButton = document.querySelector("#withdraw-btn")
+    const transferButton = document.querySelector("#transfer-btn");
 
     // form //
     const form = document.querySelector(".form");
@@ -42,9 +42,7 @@ const transferButton = document.querySelector("#transfer-btn");
 
     // show register form //
     function showRegister() {        
-        form.classList.add("form--visibility");
-        // visibilityToggle(registerHide);
-        // visibilityToggle([form, registerTitle,...registerHide]);
+        form.classList.add("form--visible");
         visibilityToggle([signUpButton, logInButton, registerTitle, welcomeView]);
         signUpButton.removeEventListener("click", showRegister);
     }
@@ -53,15 +51,10 @@ const transferButton = document.querySelector("#transfer-btn");
 
     // show log in form //
     function showLogin(event) {
+        form.classList.add("form--visible");
         const buttonClicked = event.target.id;
-        form.classList.add("form--visibility");
-        // visibilityToggle(logInHide);
-        // visibilityToggle([form, logInTitle, logInForm, ...logInHide]);
-        if (buttonClicked==="navbar-login"){
-            visibilityToggle([logInTitle, logInForm, ...logInHide]);
-        } else {
-            visibilityToggle([registerTitle, ...registerFields, createButton, formAlternative, logInTitle, logInForm]);
-        }
+        buttonClicked === "navbar-login" ? visibilityToggle([logInTitle, logInForm, ...logInHide])
+        : visibilityToggle([registerTitle, ...registerFields, createButton, formAlternative, logInTitle, logInForm]);
         logInButton.removeEventListener("click", showLogin);
     }
 
@@ -75,10 +68,10 @@ const transferButton = document.querySelector("#transfer-btn");
         const formPassword =document.querySelector("#password").innerHTML
         const formUsername = document.querySelector("#name").innerHTML;
         if(formUsername ===username && formPassword===password){
-            form.classList.remove("form--visibility");
-            features.classList.add("features--visibility")
+            form.classList.remove("form--visible");
+            features.classList.add("features--visible")
             welcomeTitle.classList.add("welcome-user");
-            visibilityToggle([features, welcomeView, logInTitle, logInForm, welcomeDescription]);
+            visibilityToggle([welcomeView, logInTitle, logInForm, welcomeDescription]);
             welcomeTitle.innerHTML = "Welcome " + username;
             manageBalance();
         }else{
@@ -108,7 +101,6 @@ const transferButton = document.querySelector("#transfer-btn");
                 localStorage.setItem('email', JSON.stringify(credentials.email));
                 localStorage.setItem('password', JSON.stringify(credentials.password));
                 localStorage.setItem("balance", JSON.stringify(credentials.balance));
-                // showLogin();
                 visibilityToggle([...registerFields, registerTitle, createButton, formAlternative, logInTitle, logInForm])
             }
         }
@@ -118,7 +110,6 @@ const transferButton = document.querySelector("#transfer-btn");
 
     // manage user's balance 
     function manageBalance(){
-        // let balance = parseFloat(JSON.parse(localStorage.getItem("balance")));
         let balance = "0"
         const roundedBalance = (Math.round(balance*100)/100).toFixed(2);
         let showBalance = document.createElement("p");

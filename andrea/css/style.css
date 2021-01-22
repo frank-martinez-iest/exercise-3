@@ -111,7 +111,7 @@ input {
     font-size: 50px;
 }
 
-.welcome-description{
+.welcome-description {
     color: #F8ECDC;
     font-size: 40px;
     line-height: 2;
@@ -137,7 +137,7 @@ input {
     margin-top: 160px;
 }
 
-.form--visibility {
+.form--visible {
     display: flex;
     flex-direction: column;
     margin: 56px 104px; 
@@ -164,13 +164,12 @@ input {
     margin-right: 0;
 }
 
-
 .create__btn:hover, .login-form__btn:hover {
     background-color: #823E1D;
     color: #F8ECDC
 }
 
-.features--visibility {
+.features--visible {
     display: flex;
     margin-left: 96px;
     margin-top: 32px;
@@ -198,7 +197,7 @@ input {
         align-items: center;
     }
 
-    .welcome-description{
+    .welcome-description {
         font-size: 32px;
         text-align: center;
         margin-left: auto;
@@ -221,7 +220,7 @@ input {
         margin-top: 16px;
     }
 
-    .features--visibility {
+    .features--visible {
         flex-direction: column;
         align-items: center;
     }
@@ -240,7 +239,7 @@ input {
         text-align: center;
     }
     
-    .welcome-description{
+    .welcome-description {
         font-size: 32px;    
     }
 
@@ -271,7 +270,7 @@ input {
         font-size: 64px;
     }
 
-    .welcome-description{
+    .welcome-description {
         width: 248px;
         font-size: 24px;
     }

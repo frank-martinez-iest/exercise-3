@@ -37,8 +37,7 @@ describe('index.html', () => {
         const form = container.querySelector(".form");
         fireEvent.click(navbarSign);
         expect(registerTitle.hasAttribute("hidden")).toBeFalsy();
-        // expect(form.("hidden")).toBeFalsy();
-        expect(form.classList.contains("form--visibility")).toBeTruthy();
+        expect(form.classList.contains("form--visible")).toBeTruthy();
     })
 
     it('shows login view when login button is cliked', () => {
@@ -47,7 +46,7 @@ describe('index.html', () => {
         const form = container.querySelector(".form")
         fireEvent.click(navbarLogin);
         expect(loginTitle.hasAttribute("hidden")).toBeFalsy();
-        expect(form.classList.contains("form--visibility")).toBeTruthy();
+        expect(form.classList.contains("form--visible")).toBeTruthy();
     })
 
     it('checks that local storage is initialized properly', () => expect(localStorage.store).toEqual({}));
@@ -82,8 +81,9 @@ describe('index.html', () => {
         expect(username.innerHTML).toEqual("andrea@gmail.com");
         expect(password.innerHTML).toEqual("123")
         fireEvent.click(formLoginBtn)
-        expect(form.classList.contains("form--visibility")).toBeFalsy();
+        expect(form.classList.contains("form--visible")).toBeFalsy();
         expect(container.querySelector(".welcome-view").hasAttribute("hidden")).toBeFalsy();
+        expect(container.querySelector(".welcome-description").hasAttribute("hidden")).toBeTruthy();
     })
    
     it("checks that balance description is added and that transfer and withdraw buttons are disabled if balance is 0", () => {
