@@ -82,7 +82,7 @@ const loadUserDashboard = (user) => {
     accountSection.classList.add('dashboard');
     accountSection.appendChild(boardWrapper);
     user.balance ?? setInitialUserBalance(user);
-    toggleUserDashboardBtnsVisibility();
+    toggleUserDashboardBtnsVisibility(user.balance);
     userDashboard.firstElementChild.innerHTML = `Welcome ${user.email}`;
     userDashboard.querySelector('#current-balance').innerText = `Your current balance is ${parseNumberToLocaleString(user.balance)}`
 }
@@ -90,9 +90,11 @@ const setInitialUserBalance = (user) => window.localStorage.setItem(`${user.phon
 const parseNumberToLocaleString = (number) => number.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 
 const toggleUserDashboardBtnsVisibility = (balance) => {
+    console.log(balance);
     if (balance > 0) {
-        USERDASHBOARDBTNS.WITHDRAW.setAttribute("hidden", "");
-        USERDASHBOARDBTNS.TRANSACTIONS.setAttribute("hidden", "");
+        console.log(USERDASHBOARDBTNS.WITHDRAW);
+        USERDASHBOARDBTNS.WITHDRAW.removeAttribute("hidden");
+        USERDASHBOARDBTNS.TRANSACTIONS.removeAttribute("hidden");
     }
 }
 
