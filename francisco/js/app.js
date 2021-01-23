@@ -63,17 +63,6 @@ function reloadPage() {
 }
 
 function initialize() {
-  setClickHandlers(
-    ()=>{toggleVisibility(APP_SECTIONS.LOGIN_WRAPPER, APP_SECTIONS.WELCOME_WRAPPER)},
-    APP_BUTTONS.SHOW_LOGIN, APP_BUTTONS.NAV_LOGIN
-  );
-  setClickHandlers(
-    ()=>{toggleVisibility(APP_SECTIONS.SIGN_UP_WRAPPER, APP_SECTIONS.WELCOME_WRAPPER)},
-    APP_BUTTONS.SHOW_SIGN_UP, APP_BUTTONS.NAV_SIGN_UP
-  );
-  setClickHandlers(
-    reloadPage,
-    APP_BUTTONS.LOGIN_CANCEL, APP_BUTTONS.SIGN_UP_CANCEL
   setClickHandlers(() => {
     toggleVisibility(APP_SECTIONS.LOGIN_WRAPPER, APP_SECTIONS.WELCOME_WRAPPER);
   }, APP_BUTTONS.SHOW_LOGIN);
