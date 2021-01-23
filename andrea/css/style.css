@@ -87,7 +87,7 @@ input {
     color: #2E4F48;
 }
 
-.navbar-sign:hover, .navbar-login:hover {
+.navbar-sign:hover, .navbar-login:hover, .features__button:hover {
     background-color: #823E1D;
     color: #F8ECDC;
 }
@@ -107,6 +107,10 @@ input {
     margin: 96px 96px 48px;
 }
 
+.welcome-user {
+    font-size: 50px;
+}
+
 .welcome-description {
     color: #F8ECDC;
     font-size: 40px;
@@ -114,10 +118,6 @@ input {
     margin: 0 104px;
     width: 336px;
 }
-
-/* .register-form, .register-title, .login-title {
-    display: none;
-} */
 
 
 .register-title, .login-title {
@@ -131,13 +131,13 @@ input {
     margin-top: 160px;
 }
 
-.form {
+.form--visible {
     display: flex;
     flex-direction: column;
     margin: 56px 104px; 
 }
 
-.form-alternative {
+.form__alternative {
     background-color: transparent;
     color: #2E4F48;
     font-size: 12px;
@@ -150,7 +150,7 @@ input {
     color: #823E1D;
 }
 
-.create-btn, .login-form {
+.create__btn, .login-form__btn {
     background-color: #2E4F48;
     color: #F8ECDC;
     width:  296px;
@@ -159,10 +159,23 @@ input {
 }
 
 
-.create-btn:hover, .login-form:hover {
+.create__btn:hover, .login-form__btn:hover {
     background-color: #823E1D;
     color: #F8ECDC
 }
+
+.features--visible {
+    display: flex;
+    margin-left: 96px;
+    margin-top: 32px;
+}
+
+.features__button {
+    background-color: #F8ECDC;
+    color: #823E1D;
+    margin-right: 72px ;
+}
+
 
 
 @media (max-width: 1024px) {
@@ -196,6 +209,11 @@ input {
         align-items: center;
         margin-top: 16px;
     }
+
+    .features--visible {
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 @media (max-width: 768px){
@@ -207,6 +225,10 @@ input {
         margin: 120px 0 0;
     }
 
+    .welcome-user {
+        text-align: center;
+    }
+    
     .welcome-description{
         font-size: 32px;
     }

@@ -15,7 +15,7 @@
   <link rel="manifest" href="site.webmanifest">
   <link rel="apple-touch-icon" href="icon.png">
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500&display=swap" rel="stylesheet"> 
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
 
@@ -40,27 +40,35 @@
       <h1 class="welcome-title">Welcome</h1>
       <p class="welcome-description">The most transparent & secure banking platform</p>
     </div>
-    <h2 class="register-title hidden">Register now</h2>
-    <h2 class="login-title hidden">Log in now</h2>
+
+    <div class="features" hidden>
+      <button class="features__button">Deposit</button>
+      <button class="features__button">Withdraw</button>
+      <button class="features__button">Transfer</button>
+    </div>
+
+    <h2 class="register-title" hidden>Register now</h2>
+    <h2 class="login-title" hidden>Log in now</h2>
     
-    <form class="register-form hidden" action="">
+    <form class="form" action="" hidden>
         <label for="name">Username</label>
-        <input type="text" id="name" placeholder="Username" required> 
+        <input type="text" id="name" class="register-fields" placeholder="Username" data-test-id="login-username-input" required> 
         <label for="phone-number">Phone number</label>
         <input type="tel" id="phone-number" class="register-fields" placeholder="Phone Number" required>
         <label for="email">Email</label>
-        <input type="email" id="email" class="register-fields" placeholder="Email" required> 
+        <input type="email" id="email"  placeholder="Email" required> 
         <label for="password">Password</label>
         <input type="password" id="password" placeholder="Password" required> 
         <label for="confirm-password">Confirm password</label>
         <input type="password" id="confirm-password" class="register-fields" placeholder="Confirm Password" required>
-        <button class="create-btn" type="submit">Create account</button> 
-        <button class="form-alternative"> Already have an account?</button>
-        <button class="login-form hidden" type="submit">Log In</</button>
+        <button class="create__btn" type="submit">Create account</button> 
+        <button class="form__alternative" type="button"> Already have an account?</button>
+        <button class="login-form__btn" type="button" hidden >Log In</</button>
     </form>
   </main>
 
-  <script src="js/app.js"></script>
+  <script type="module" src="js/app.js"></script>
+
 </body>
 </html>
 
