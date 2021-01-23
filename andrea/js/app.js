@@ -1,3 +1,5 @@
+const INITIAL_BALANCE = "0";
+
 // buttons //
 const signUpButton = document.querySelector("#navbar-sign");
 const logInButton = document.querySelector("#navbar-login");
@@ -37,7 +39,6 @@ function visibilityToggle(element){
         const isElementHidden = element.hasAttribute("hidden");
         isElementHidden ? element.removeAttribute("hidden") : element.setAttribute("hidden", "")
     });
-
 }
 
 // show register form //
@@ -46,7 +47,6 @@ function showRegister() {
     visibilityToggle([signUpButton, logInButton, registerTitle, welcomeView]);
     signUpButton.removeEventListener("click", showRegister);
 }
-
 signUpButton.addEventListener("click", showRegister);
 
 // show log in form //
@@ -57,7 +57,6 @@ function showLogin(event) {
     : visibilityToggle([registerTitle, ...registerFields, createButton, formAlternative, logInTitle, logInForm]);
     logInButton.removeEventListener("click", showLogin);
 }
-
 logInButton.addEventListener("click", showLogin);
 formAlternative.addEventListener("click", showLogin);
 
@@ -80,29 +79,26 @@ function welcomeUser(event){
 
     logInForm.removeEventListener("click", welcomeUser);
 }
-
-
-
 logInForm.addEventListener("click", welcomeUser)
 
 
 // create account button //
 function createAccount(event){
     event.preventDefault();
-    const credentials = {
+    const userData = {
         "email": document.querySelector("#email").value,
         "password": document.querySelector("#password").value,
-        "balance": "0"
+        "balance": INITIAL_BALANCE
     };
-    if (JSON.stringify(credentials.email) !== ''){
-        if (JSON.stringify(credentials.email) === localStorage.getItem('email')){
+    if (JSON.stringify(userData.email) !== ''){
+        if (JSON.stringify(userData.email) === localStorage.getItem('email')){
             alert("already registered");
             return;
         }else{
             // local storage //
-            localStorage.setItem("email", JSON.stringify(credentials.email));
-            localStorage.setItem("password", JSON.stringify(credentials.password));
-            localStorage.setItem("balance", JSON.stringify(credentials.balance));
+            localStorage.setItem("email", JSON.stringify(userData.email));
+            localStorage.setItem("password", JSON.stringify(userData.password));
+            localStorage.setItem("balance", JSON.stringify(userData.balance));
             visibilityToggle([...registerFields, registerTitle, createButton, formAlternative, logInTitle, logInForm])
         }
     }
@@ -112,17 +108,17 @@ createButton.addEventListener("click", createAccount);
 
 // manage user's balance 
 function manageBalance(){
-    let balance = parseFloat(JSON.parse(localStorage.getItem("balance")));
-    const roundedBalance = (Math.round(balance*100)/100).toFixed(2);
+    let balance = JSON.parse(localStorage.getItem("balance"));
+    const roundedBalance = (Math.round(parseFloat(balance)*100)/100).toFixed(2);
     let showBalance = document.createElement("p");
     welcomeView.appendChild(showBalance);
     showBalance.classList.add("balance-description");
-    showBalance.innerHTML="Your balance is $" + roundedBalance;
+    showBalance.innerHTML= `Your balance is $${roundedBalance}`;
 
-    if (balance === "0"){
+    if (balance === INITIAL_BALANCE){
         withdrawButton.setAttribute("disabled","");
         transferButton.setAttribute("disabled","");
-    } else {   }
+    }
 }
 
 // validate password //
@@ -136,6 +132,3 @@ function validatePassword(){
 
 password.onchange = validatePassword;
 confirmPassword.onkeyup = validatePassword;
-
-
-
