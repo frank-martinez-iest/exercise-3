@@ -12,6 +12,11 @@ const accountSection = document.querySelector(".account");
 const fields = ['name', 'phone'];
 const registerFieldsIds = ['email', 'password', 'password_confirmation'];
 const registrationFormWrapper = document.querySelector('.account__left-wrapper');
+const USERDASHBOARDBTNS = {
+    DEPOSIT: document.querySelector("#deposit"),
+    WITHDRAW: document.querySelector("#withdraw"),
+    TRANSACTIONS: document.querySelector("#transactions"),
+}
 /*STRINGS*/
 const SIGN_IN = 'Sign In';
 const REGISTER = 'Register';
@@ -77,12 +82,19 @@ const loadUserDashboard = (user) => {
     accountSection.classList.add('dashboard');
     accountSection.appendChild(boardWrapper);
     user.balance ?? setInitialUserBalance(user);
+    toggleUserDashboardBtnsVisibility();
     userDashboard.firstElementChild.innerHTML = `Welcome ${user.email}`;
     userDashboard.querySelector('#current-balance').innerText = `Your current balance is ${parseNumberToLocaleString(user.balance)}`
 }
 const setInitialUserBalance = (user) => window.localStorage.setItem(`${user.phone}`, JSON.stringify({ ...user, 'balance': 0 }));
 const parseNumberToLocaleString = (number) => number.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 
+const toggleUserDashboardBtnsVisibility = (balance) => {
+    if (balance > 0) {
+        USERDASHBOARDBTNS.WITHDRAW.setAttribute("hidden", "");
+        USERDASHBOARDBTNS.TRANSACTIONS.setAttribute("hidden", "");
+    }
+}
 
 registerFieldsWrapper.remove();
 boardWrapper.remove();
