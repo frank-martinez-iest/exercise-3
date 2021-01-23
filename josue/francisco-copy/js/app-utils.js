@@ -1,9 +1,9 @@
 const App = {
-    context : undefined,
-    setContext(context){
+    context: undefined,
+    setContext(context) {
         this.context = context;
     },
-    createAppElements(){
+    createAppElements() {
         return ({
             BUTTONS: {
                 NAV_LOGIN: this?.context.querySelector("#navLogin"),
@@ -19,8 +19,8 @@ const App = {
                 WELCOME_WRAPPER: this?.context.querySelector("#welcomeWrapper"),
                 LOGIN_WRAPPER: this?.context.querySelector("#loginWrapper"),
                 SIGN_UP_WRAPPER: this?.context.querySelector("#signUpWrapper"),
-            },    
-            FORMS:{
+            },
+            FORMS: {
                 LOGIN_FORM: this?.context.querySelector("#loginForm"),
                 SIGN_UP_FORM: this?.context.querySelector("#signUpForm"),
             },
