@@ -53,7 +53,7 @@ signUpButton.addEventListener("click", showRegister);
 function showLogin(event) {
     form.classList.add("form--visible");
     const buttonClicked = event.target.id;
-    buttonClicked === "navbar-login" ? visibilityToggle([logInTitle, logInForm, ...logInHide]) 
+    buttonClicked === "navbar-login" ? visibilityToggle([logInTitle, logInForm, ...logInHide])
     : visibilityToggle([registerTitle, ...registerFields, createButton, formAlternative, logInTitle, logInForm]);
     logInButton.removeEventListener("click", showLogin);
 }
@@ -106,7 +106,7 @@ function createAccount(event){
 }
 createButton.addEventListener("click", createAccount);
 
-// manage user's balance 
+// manage user's balance
 function manageBalance(){
     let balance = JSON.parse(localStorage.getItem("balance"));
     const roundedBalance = (Math.round(parseFloat(balance)*100)/100).toFixed(2);

@@ -43,7 +43,7 @@ function visibilityToggle(element){
 }
 
 // show register form //
-function showRegister() {        
+function showRegister() {
     form.classList.add("form--visible");
     visibilityToggle([signUpButton, logInButton, registerTitle, welcomeView]);
     signUpButton.removeEventListener("click", showRegister);
@@ -86,7 +86,7 @@ logInForm.addEventListener("click", welcomeUser)
 // create account button //
 function createAccount(event){
     event.preventDefault();
-    const userData = { 
+    const userData = {
         "email": document.querySelector("#email").value,
         "password": document.querySelector("#password").value,
         "balance": INITIAL_BALANCE
@@ -108,7 +108,7 @@ function createAccount(event){
 }
 createButton.addEventListener("click", createAccount);
 
-// manage user's balance 
+// manage user's balance
 function manageBalance(){
     let balance = INITIAL_BALANCE;
     const roundedBalance = (Math.round(balance*100)/100).toFixed(2);
@@ -120,7 +120,7 @@ function manageBalance(){
     if (balance === INITIAL_BALANCE){
         withdrawButton.setAttribute("disabled","");
         transferButton.setAttribute("disabled","");
-    } 
+    }
 }
 
 // validate password //
@@ -134,4 +134,3 @@ function validatePassword(){
 
 password.onchange = validatePassword;
 confirmPassword.onkeyup = validatePassword;
-

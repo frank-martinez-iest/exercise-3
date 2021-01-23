@@ -1,0 +1,211 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit test login feature renders Sign In form 1`] = `
+<body>
+  
+
+  
+  <nav
+    class="navbar"
+  >
+    
+    
+    <ul
+      class="navbar__items"
+    >
+      
+      
+      <li
+        class="navbar__logo"
+      >
+        
+        
+        <a
+          href="/"
+        >
+          
+          Bank
+          <em>
+            App
+          </em>
+          
+        
+        </a>
+        
+      
+      </li>
+      
+      
+      <li
+        class="navbar__link"
+      >
+        
+        
+        <button
+          class="btn btn--secondary"
+          id="signBtn"
+        >
+          Log In
+        </button>
+        
+      
+      </li>
+      
+      
+      <li
+        class="navbar__link"
+      >
+        
+        
+        <button
+          class="btn btn--primary"
+          id="registerBtn"
+        >
+          Register
+        </button>
+        
+      
+      </li>
+      
+    
+    </ul>
+    
+  
+  </nav>
+  
+  
+  <main>
+    
+    
+    <section
+      class="account"
+    >
+      
+
+      
+      <div
+        class="account__left-wrapper"
+      >
+        
+        
+        <form
+          class="form"
+          id="form"
+        >
+          
+          
+          <div
+            class="form-group"
+          >
+            
+            
+            <label
+              for="name"
+            >
+              
+              Name
+            
+            </label>
+            
+            
+            <input
+              autocomplete=""
+              id="name"
+              name="Name"
+              placeholder="Lorem Perez"
+              required=""
+              type="text"
+            />
+            
+            
+            <span
+              class="error-message"
+            />
+            
+          
+          </div>
+          
+          
+          <div
+            class="form-group"
+          >
+            
+            
+            <label
+              for="phone"
+            >
+              
+              Phone
+            
+            </label>
+            
+            
+            <input
+              autocomplete=""
+              id="phone"
+              name="Phone"
+              placeholder="8334563456"
+              required=""
+              type="tel"
+            />
+            
+            
+            <span
+              class="error-message"
+            />
+            
+
+          
+          </div>
+          
+          
+          
+          
+          <button
+            class="btn btn--primary"
+            id="submit"
+          >
+            Sign In
+          </button>
+          
+        
+        </form>
+        
+      
+      </div>
+      
+      
+      <div
+        class="account__splash-img"
+      >
+        
+        
+        <h1>
+          Welcome!
+        </h1>
+        
+      
+      </div>
+      
+      
+      
+    
+    </section>
+    
+  
+  </main>
+  
+  
+  <!--This is not read by jest-->
+  
+  
+  <script
+    src="js/app.js"
+    type="module"
+  />
+  
+
+
+
+</body>
+`;
