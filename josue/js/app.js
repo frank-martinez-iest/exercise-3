@@ -17,6 +17,7 @@ const USERDASHBOARDBTNS = {
     WITHDRAW: document.querySelector("#withdraw"),
     TRANSACTIONS: document.querySelector("#transactions"),
 }
+let USER = undefined;
 /*STRINGS*/
 const SIGN_IN = 'Sign In';
 const REGISTER = 'Register';
@@ -63,8 +64,8 @@ submitBtn.addEventListener('click', e => {
         // Fields are filled correctly now we check if user wants to register or login
         if (submitBtn.innerText == SIGN_IN) {
             const userData = parseFormData();
-            const user = JSON.parse(window.localStorage.getItem(`${userData.phone}`));
-            user ? loadUserDashboard(user) : alert("You are not an user, you have to register first!");
+            USER = getUserFromLocalStorage(userData);
+            USER ? loadUserDashboard() : alert("You are not an user, you have to register first!");
         }
         else {
             // User wants to register.. save it to localstorage
@@ -74,29 +75,35 @@ submitBtn.addEventListener('click', e => {
         }
     }
 });
-
-const loadUserDashboard = (user) => {
+const getUserFromLocalStorage = userData => {
+    const user = JSON.parse(window.localStorage.getItem(`${userData.phone}`));
+    console.log(user);
+    return user;
+};
+const loadUserDashboard = () => {
     welcomeSplash.remove();
     registrationFormWrapper.remove();
     accountSection.classList.remove('account');
     accountSection.classList.add('dashboard');
     accountSection.appendChild(boardWrapper);
-    user.balance ?? setInitialUserBalance(user);
-    toggleUserDashboardBtnsVisibility(user.balance);
-    userDashboard.firstElementChild.innerHTML = `Welcome ${user.email}`;
-    userDashboard.querySelector('#current-balance').innerText = `Your current balance is ${parseNumberToLocaleString(user.balance)}`
-}
-const setInitialUserBalance = (user) => window.localStorage.setItem(`${user.phone}`, JSON.stringify({ ...user, 'balance': 0 }));
-const parseNumberToLocaleString = (number) => number.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-
-const toggleUserDashboardBtnsVisibility = (balance) => {
-    console.log(balance);
-    if (balance > 0) {
-        console.log(USERDASHBOARDBTNS.WITHDRAW);
-        USERDASHBOARDBTNS.WITHDRAW.removeAttribute("hidden");
-        USERDASHBOARDBTNS.TRANSACTIONS.removeAttribute("hidden");
+    const userHasNoBalance = !USER.balance;
+    if (userHasNoBalance) {
+        USER = setInitialUserBalance(USER);
     }
+    toggleUserDashboardBtnsVisibility(USER.balance, USERDASHBOARDBTNS.WITHDRAW, USERDASHBOARDBTNS.TRANSACTIONS);
+    userDashboard.firstElementChild.innerHTML = `Welcome ${USER.email}`;
+    userDashboard.querySelector('#current-balance').innerText = `Your current balance is ${parseNumberToLocaleString(USER.balance)}`
 }
+const setInitialUserBalance = user => {
+    window.localStorage.setItem(`${user.phone}`, JSON.stringify({ ...user, 'balance': 0 }))
+    return getUserFromLocalStorage(user);
+};
+const parseNumberToLocaleString = number => number.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+
+const toggleUserDashboardBtnsVisibility = (balance, ...dashboardBtns) => balance > 0 ? unhideDOMElements(dashboardBtns) : false
+
+
+const unhideDOMElements = DOMelements => DOMelements.forEach((DOMelement) => DOMelement.removeAttribute("hidden"))
 
 registerFieldsWrapper.remove();
 boardWrapper.remove();
