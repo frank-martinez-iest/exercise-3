@@ -53,8 +53,9 @@ signUpButton.addEventListener("click", showRegister);
 function showLogin(event) {
     form.classList.add("form--visible");
     const buttonClicked = event.target.id;
-    buttonClicked === "navbar-login" ? visibilityToggle([logInTitle, logInForm, ...logInHide])
-    : visibilityToggle([registerTitle, ...registerFields, createButton, formAlternative, logInTitle, logInForm]);
+    const elementsToToggle =  buttonClicked === "navbar-login" ? [logInTitle, logInForm, ...logInHide]
+    : [registerTitle, ...registerFields, createButton, formAlternative, logInTitle, logInForm];
+    visibilityToggle(elementsToToggle);
     logInButton.removeEventListener("click", showLogin);
 }
 logInButton.addEventListener("click", showLogin);
@@ -66,21 +67,20 @@ function welcomeUser(event){
     const password = JSON.parse(localStorage.getItem("password"));
     const formUsername = document.querySelector("#email").value;
     const formPassword =document.querySelector("#password").value
-    if(formUsername ===username && formPassword===password){
+    const isUserValid = formUsername===username && formPassword===password;
+    if(isUserValid){
         form.classList.remove("form--visible");
         features.classList.add("features--visible")
         welcomeTitle.classList.add("welcome-user");
         visibilityToggle([welcomeView, logInTitle, logInForm, welcomeDescription]);
-        welcomeTitle.innerHTML = "Welcome " + username;
+        welcomeTitle.innerHTML = `Welcome ${username}`;
         manageBalance();
     }else{
         alert("Incorrect Username or Password.")
     }
-
     logInForm.removeEventListener("click", welcomeUser);
 }
 logInForm.addEventListener("click", welcomeUser)
-
 
 // create account button //
 function createAccount(event){
@@ -90,10 +90,12 @@ function createAccount(event){
         "password": document.querySelector("#password").value,
         "balance": INITIAL_BALANCE
     };
-    if (JSON.stringify(userData.email) !== ''){
-        if (JSON.stringify(userData.email) === localStorage.getItem('email')){
+    
+    const userEmail = JSON.stringify(userData.email);
+    if (userEmail){
+        const userEmailFound = userEmail === localStorage.getItem('email')
+        if (userEmailFound){
             alert("already registered");
-            return;
         }else{
             // local storage //
             localStorage.setItem("email", JSON.stringify(userData.email));
@@ -123,10 +125,11 @@ function manageBalance(){
 
 // validate password //
 function validatePassword(){
-    if(password.value !== confirmPassword.value){
-        confirmPassword.setCustomValidity("Passwords don't match");
-    }else {
+    const passwordMatches = password.value === confirmPassword.value;
+    if(passwordMatches){
         confirmPassword.setCustomValidity('');
+    }else {
+        confirmPassword.setCustomValidity("Passwords don't match");
     }
 }
 

@@ -54,8 +54,9 @@ signUpButton.addEventListener("click", showRegister);
 function showLogin(event) {
     form.classList.add("form--visible");
     const buttonClicked = event.target.id;
-    buttonClicked === "navbar-login" ? visibilityToggle([logInTitle, logInForm, ...logInHide])
-    : visibilityToggle([registerTitle, ...registerFields, createButton, formAlternative, logInTitle, logInForm]);
+    const elementsToToggle =  buttonClicked === "navbar-login" ? [logInTitle, logInForm, ...logInHide]
+    : [registerTitle, ...registerFields, createButton, formAlternative, logInTitle, logInForm];
+    visibilityToggle(elementsToToggle);
     logInButton.removeEventListener("click", showLogin);
 }
 
@@ -68,12 +69,13 @@ function welcomeUser(event){
     const password = "123";
     const formPassword =document.querySelector("#password").innerHTML
     const formUsername = document.querySelector("#name").innerHTML;
-    if(formUsername ===username && formPassword===password){
+    const isUserValid = formUsername ===username && formPassword===password;
+    if(isUserValid){
         form.classList.remove("form--visible");
         features.classList.add("features--visible")
         welcomeTitle.classList.add("welcome-user");
         visibilityToggle([welcomeView, logInTitle, logInForm, welcomeDescription]);
-        welcomeTitle.innerHTML = "Welcome " + username;
+        welcomeTitle = `Welcome ${username}`;
         manageBalance();
     }else{
         alert("Incorrect Username or Password.")
@@ -91,11 +93,12 @@ function createAccount(event){
         "password": document.querySelector("#password").value,
         "balance": INITIAL_BALANCE
     };
-
-    if (JSON.stringify(userData.email) !== ''){
-        if (JSON.stringify(userData.email) === localStorage.getItem('email')){
+    
+    const userEmail = JSON.stringify(userData.email);
+    if (userEmail){
+        const userEmailFound = userEmail === localStorage.getItem('email')
+        if (userEmailFound) {
             alert("already registered");
-            return;
         }else{
             // local storage //
             localStorage.setItem('email', JSON.stringify(userData.email));
@@ -125,10 +128,11 @@ function manageBalance(){
 
 // validate password //
 function validatePassword(){
-    if(password.value !== confirmPassword.value){
-        confirmPassword.setCustomValidity("Passwords don't match");
-    }else {
+    const passwordMatches = password.value === confirmPassword.value;
+    if(passwordMatches){
         confirmPassword.setCustomValidity('');
+    }else {
+        confirmPassword.setCustomValidity("Passwords don't match");
     }
 }
 
