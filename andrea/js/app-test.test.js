@@ -21,7 +21,7 @@ describe('index.html', () => {
         container = dom.window.document.body;
         scriptElement = document.createElement('script');
         scriptElement.textContent = scriptContent;
-        document.head.appendChild(scriptElement);
+        document.body.appendChild(scriptElement);
     });
     
 

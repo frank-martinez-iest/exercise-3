@@ -67,9 +67,9 @@ function welcomeUser(event){
     event.preventDefault();
     const username = "andrea@gmail.com";
     const password = "123";
-    const formPassword =document.querySelector("#password").innerHTML
+    const formPassword = document.querySelector("#password").innerHTML
     const formUsername = document.querySelector("#name").innerHTML;
-    const isUserValid = formUsername ===username && formPassword===password;
+    const isUserValid = formUsername===username && formPassword===password;
     if(isUserValid){
         form.classList.remove("form--visible");
         features.classList.add("features--visible")
