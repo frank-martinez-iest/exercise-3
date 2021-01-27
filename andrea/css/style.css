@@ -119,6 +119,12 @@ input {
     width: 336px;
 }
 
+.balance-description{
+    color: #F8ECDC;
+    font-size: 24px;
+    margin-left: 104px;
+}
+
 
 .register-title, .login-title {
     width: fit-content;
@@ -157,7 +163,6 @@ input {
     margin-left: 0;
     margin-right: 0;
 }
-
 
 .create__btn:hover, .login-form__btn:hover {
     background-color: #823E1D;
@@ -199,6 +204,11 @@ input {
         margin-right: auto;
     }
 
+    .balance-description {
+        margin: 32px 0 0;
+        text-align: center;
+    }
+
     .register-title, .login-title {
         font-size: 64px;
         justify-content: center;
@@ -229,7 +239,12 @@ input {
         text-align: center;
     }
     
-    .welcome-description{
+    .welcome-description {
+        font-size: 32px;    
+    }
+
+    .balance-description {
+        color: #F8ECDC;
         font-size: 32px;
     }
 
@@ -258,6 +273,11 @@ input {
     .welcome-description {
         width: 248px;
         font-size: 24px;
+    }
+
+    .balance-description {
+        color: #F8ECDC;
+        font-size: 32px;
     }
 
     .register-title, .login-title {
