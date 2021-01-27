@@ -9,9 +9,9 @@
 
   <link rel="manifest" href="site.webmanifest">
 
-  <!-- <link rel="stylesheet" href="css/normalize.css"> -->
-  <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -19,6 +19,10 @@
 <body>
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Bank App</a>
+      <ul class="right hide-on-med-and-down">
+        <li><button id="navLogin" class="btn-large waves-effect waves-light orange margin-right-2">Login</button></li>
+        <li><button id="navSignUp" class="btn-large waves-effect waves-light orange">Sign Up</button></li>
+      </ul>
     </div>
   </nav>
   <div class="section no-pad-bot" id="index-banner">
@@ -26,7 +30,7 @@
       <br><br>
       <h1 class="header center orange-text">Banking Application</h1>
 
-      <section id="welcomeWrapper" data-testId="welcome-wrapper">
+      <section id="welcomeWrapper">
         <div class="row center">
           <h5 class="header col s12 light">Welcome</h5>
         </div>
@@ -44,13 +48,13 @@
           <form class="col s12" id="loginForm">
             <div class="row center">
               <div class="input-field col s12">
-                <input id="username" name="username" type="text" class="validate">
+                <input id="username" name="username" type="text" class="validate" required>
                 <label for="username">Username</label>
               </div>
             </div>
             <div class="row center">
               <div class="input-field col s12">
-                <input id="password" name="password" type="password" class="validate">
+                <input id="password" name="password" type="password" class="validate" required>
                 <label for="password">Password</label>
               </div>
             </div>
@@ -103,7 +107,17 @@
           </form>
         </div>
       </section>
-      
+      <section id="movementsWrapper">
+        <div class="row center">
+          <h5 class="header col s12 light">Welcome <span id="userLoggedName"></span> </h5>
+          <h6>Your current balance is <span id="userBalance"></span></h6>
+        </div>
+        <div class="row center">
+          <button id="depositBtn" class="btn-large waves-effect waves-light orange margin-right-2">DEPOSIT</button>
+          <button id="withdrawBtn" class="btn-large waves-effect waves-light orange margin-right-2">WITHDRAW</button>
+          <button id="transferBtn" class="btn-large waves-effect waves-light orange">TRANSFER</button>
+        </div>
+      </section>
       <br><br>
 
     </div>
@@ -183,86 +197,8 @@
     </div>
   </footer>
 
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
-  <script>
-    const APP_BUTTONS = {
-    SHOW_LOGIN: document.querySelector("#showLogin"),
-    SHOW_SIGN_UP: document.querySelector("#showSignUp"),
-    LOGIN_CANCEL: document.querySelector("#loginCancel"),
-    SIGN_UP_CANCEL: document.querySelector("#signUpCancel"),
-    SUBMIT_LOGIN: document.querySelector("#submitLogin"),
-    SUBMIT_SIGN_UP: document.querySelector("#submitSignUp")
-  };
-
-    const APP_SECTIONS = {
-      WELCOME_WRAPPER: document.querySelector('#welcomeWrapper'),
-      LOGIN_WRAPPER: document.querySelector('#loginWrapper'),
-      SIGN_UP_WRAPPER: document.querySelector('#signUpWrapper')
-    };
-
-    const APP_FORMS = {
-      LOGIN_FORM: document.querySelector('#loginForm'),
-      SIGN_UP_FORM: document.querySelector('#signUpForm')
-    }
-
-    function toggleVisibility(...elements) {
-      elements.forEach(element => {
-        const isElementHidden = element.hasAttribute("hidden");
-        isElementHidden ? element.removeAttribute("hidden") : element.setAttribute("hidden", "")
-      });
-    }
-
-    function setClickHandlers(callback, ...buttons) {
-      buttons.forEach(button => button.addEventListener("click", callback));
-    }
-
-    function parseFormData(form) {
-      const data = {};
-      const formData = new FormData(form);
-      for (let formFields of formData) {
-        data[formFields[0]] = formFields[1];
-      }
-      return data;
-    }
-
-    function submitSignUp(event) {
-      console.log('submitting')
-      event.preventDefault();
-      const userData = parseFormData(APP_FORMS.SIGN_UP_FORM);
-      localStorage.setItem(userData.username, JSON.stringify(userData));
-      reloadPage();
-    }
-
-    function reloadPage(){
-      history.go(0);
-    }
-
-    function initialize() {
-      setClickHandlers(
-        ()=>{toggleVisibility(APP_SECTIONS.LOGIN_WRAPPER, APP_SECTIONS.WELCOME_WRAPPER)},
-        APP_BUTTONS.SHOW_LOGIN
-      );
-      setClickHandlers(
-        ()=>{toggleVisibility(APP_SECTIONS.SIGN_UP_WRAPPER, APP_SECTIONS.WELCOME_WRAPPER)},
-        APP_BUTTONS.SHOW_SIGN_UP
-      );
-      setClickHandlers(
-        reloadPage,
-        APP_BUTTONS.LOGIN_CANCEL, APP_BUTTONS.SIGN_UP_CANCEL
-      );
-
-      APP_FORMS.SIGN_UP_FORM.onsubmit = submitSignUp;
-
-      toggleVisibility(APP_SECTIONS.LOGIN_WRAPPER, APP_SECTIONS.SIGN_UP_WRAPPER);
-    }
-
-function sum2(a,b) {
-  return a + b;
-}
-
-    initialize();
-  </script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="js/app.js"></script>
 </body>
 
 </html>
