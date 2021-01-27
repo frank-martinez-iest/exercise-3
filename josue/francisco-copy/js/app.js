@@ -57,7 +57,6 @@ function submitSignUp(event) {
   reloadPage();
 }
 
-
 function reloadPage() {
   history.go(0);
 }
@@ -88,6 +87,5 @@ function initialize() {
 
   toggleVisibility(APP_SECTIONS.LOGIN_WRAPPER, APP_SECTIONS.SIGN_UP_WRAPPER);
 }
-
 
 initialize();

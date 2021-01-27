@@ -1,0 +1,200 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="manifest" href="site.webmanifest">
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Bank App</a>
+      <ul class="right hide-on-med-and-down">
+        <li><button id="navLogin" class="btn-large waves-effect waves-light orange margin-right-2">Login</button></li>
+        <li><button id="navSignUp" class="btn-large waves-effect waves-light orange">Sign Up</button></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center orange-text">Banking Application</h1>
+
+      <section id="welcomeWrapper">
+        <div class="row center">
+          <h5 class="header col s12 light">Welcome</h5>
+        </div>
+        <div class="row center">
+          <button id="showLogin" class="btn-large waves-effect waves-light orange margin-right-2">Login</button>
+          <button id="showSignUp" class="btn-large waves-effect waves-light orange">Sign Up</button>
+        </div>
+      </section>
+
+      <section id="loginWrapper">
+        <div class="row center">
+          <h5 class="header col s12 light">Login</h5>
+        </div>
+        <div class="row center width-50">
+          <form class="col s12" id="loginForm">
+            <div class="row center">
+              <div class="input-field col s12">
+                <input id="username" name="username" type="text" class="validate">
+                <label for="username">Username</label>
+              </div>
+            </div>
+            <div class="row center">
+              <div class="input-field col s12">
+                <input id="password" name="password" type="password" class="validate">
+                <label for="password">Password</label>
+              </div>
+            </div>
+            <div class="row center">
+              <button id="loginCancel" type="button"
+                class="btn waves-effect waves-light light-blue darken-3 margin-right-2">Cancel</button>
+              <button id="submitLogin" class="btn waves-effect waves-light light-blue darken-3" type="submit"
+                name="action">Login</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section id="signUpWrapper">
+        <div class="row center">
+          <h5 class="header col s12 light">Sign Up</h5>
+        </div>
+        <div class="row center width-50">
+          <form class="col s12" id="signUpForm">
+            <div class="row">
+              <div class="input-field col s6">
+                <input id="first_name" name="first_name" type="text" class="validate">
+                <label for="first_name">First Name</label>
+              </div>
+              <div class="input-field col s6">
+                <input id="last_name" name="last_name" type="text" class="validate">
+                <label for="last_name">Last Name</label>
+              </div>
+            </div>
+            <div class="row center">
+              <div class="input-field col s12">
+                <input placeholder="8 characters max" id="username" name="username" type="text" class="validate">
+                <label for="username">Username</label>
+              </div>
+            </div>
+            <div class="row center">
+              <div class="input-field col s12">
+                <input id="password" type="password" name="password" class="validate">
+                <label for="password">Password</label>
+              </div>
+            </div>
+            <div class="row center">
+              <div class="input-field col s12">
+                <input type="password" name="verify-password" class="validate">
+                <label for="verify-password">Verify Password</label>
+              </div>
+            </div>
+            <div class="row center">
+              <button id="signUpCancel" type="button"
+                class="btn waves-effect waves-light light-blue darken-3 margin-right-2">Cancel</button>
+              <button id="submitSignUp" class="btn waves-effect waves-light light-blue darken-3" type="submit"
+                name="action">Sign Up</button>
+            </div>
+          </form>
+        </div>
+      </section>
+      <br><br>
+
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">account_balance_wallet</i></h2>
+            <h5 class="center">Deposit</h5>
+
+            <p class="light center-align">You can add money to your account.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">attach_money</i></h2>
+            <h5 class="center">Withdraw</h5>
+
+            <p class="light center-align">You can get cash from your account.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">swap_horiz</i></h2>
+            <h5 class="center">Transfer</h5>
+
+            <p class="light center-align">You can send money to a different account.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <br><br>
+  </div>
+
+  <footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Get Help</h5>
+          <p class="grey-text text-lighten-4">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat.
+          </p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Settings</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        Mentorias Rock Star Engineers - <a class="orange-text text-lighten-3" href="https://frankmartinez.dev">Un
+          Francisco en San Francisco</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+
+</html>
