@@ -23,8 +23,8 @@ const APP_FORMS = {
 
 const APP_SPAN = {
   USER_NAME: document.querySelector("#userLoggedName"),
-  USER_BALANCE: document.querySelector('#userBalance')
-}
+  USER_BALANCE: document.querySelector("#userBalance"),
+};
 
 function toggleVisibility(...elements) {
   elements.forEach((element) => {
@@ -59,43 +59,45 @@ function parseFormData(form) {
 function submitSignUp(event) {
   event.preventDefault();
   const userData = parseFormData(APP_FORMS.SIGN_UP_FORM);
-  userData.balance = 0
+  userData.balance = 0;
   localStorage.setItem(userData.username, JSON.stringify(userData));
-  toggleVisibility(APP_SECTIONS.LOGIN_WRAPPER, APP_SECTIONS.SIGN_UP_WRAPPER)
+  toggleVisibility(APP_SECTIONS.LOGIN_WRAPPER, APP_SECTIONS.SIGN_UP_WRAPPER);
 }
 
 function login(e) {
   e.preventDefault();
   const loginData = parseFormData(APP_FORMS.LOGIN_FORM);
-  const signUpData = JSON.parse(localStorage.getItem(loginData.username))
+  const signUpData = JSON.parse(localStorage.getItem(loginData.username));
 
-  loginData.balance = signUpData.balance
+  loginData.balance = signUpData.balance;
 
-  allowLogin(loginData, signUpData)
-
+  allowLogin(loginData, signUpData);
 }
 
-function allowLogin (loginData, signUpData) {
-  if (loginData.username === signUpData.username && loginData.password === signUpData.password) {
-    showUserInformation(loginData)
+function allowLogin(loginData, signUpData) {
+  const isUserRegistered =
+    loginData.username === signUpData.username &&
+    loginData.password === signUpData.password;
+  if (isUserRegistered) {
+    showUserInformation(loginData);
   } else {
     // Feedback error
   }
 }
 
-function showUserInformation (user) {
-  APP_SPAN.USER_NAME.textContent = user.username
-  APP_SPAN.USER_BALANCE.textContent = formatter.format(user.balance)
-  toggleVisibility(APP_SECTIONS.MOVEMENTS_WRAPPER, APP_SECTIONS.LOGIN_WRAPPER)
+function showUserInformation(user) {
+  APP_SPAN.USER_NAME.textContent = user.username;
+  APP_SPAN.USER_BALANCE.textContent = formatter.format(user.balance);
+  toggleVisibility(APP_SECTIONS.MOVEMENTS_WRAPPER, APP_SECTIONS.LOGIN_WRAPPER);
 }
 
 function reloadPage() {
   history.go(0);
 }
 
-const formatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
+const formatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
 });
 
 function initialize() {
