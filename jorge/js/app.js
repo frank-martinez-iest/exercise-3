@@ -7,6 +7,8 @@ const APP_BUTTONS = {
   SIGN_UP_CANCEL: document.querySelector("#signUpCancel"),
   SUBMIT_LOGIN: document.querySelector("#submitLogin"),
   SUBMIT_SIGN_UP: document.querySelector("#submitSignUp"),
+  SHOW_DEPOSIT: document.querySelector("#depositBtn"),
+  DEPOSIT_CANCEL: document.querySelector("#cancelDeposit"),
 };
 
 const APP_SECTIONS = {
@@ -14,17 +16,21 @@ const APP_SECTIONS = {
   LOGIN_WRAPPER: document.querySelector("#loginWrapper"),
   SIGN_UP_WRAPPER: document.querySelector("#signUpWrapper"),
   MOVEMENTS_WRAPPER: document.querySelector("#movementsWrapper"),
+  DEPOSIT_WRAPPER: document.querySelector("#depositWrapper"),
 };
 
 const APP_FORMS = {
   LOGIN_FORM: document.querySelector("#loginForm"),
   SIGN_UP_FORM: document.querySelector("#signUpForm"),
+  DEPOSIT_FORM: document.querySelector("#depositForm"),
 };
 
 const APP_SPAN = {
   USER_NAME: document.querySelector("#userLoggedName"),
   USER_BALANCE: document.querySelector("#userBalance"),
 };
+
+let userName;
 
 function toggleVisibility(...elements) {
   elements.forEach((element) => {
@@ -60,6 +66,7 @@ function submitSignUp(event) {
   event.preventDefault();
   const userData = parseFormData(APP_FORMS.SIGN_UP_FORM);
   userData.balance = 0;
+
   localStorage.setItem(userData.username, JSON.stringify(userData));
   toggleVisibility(APP_SECTIONS.LOGIN_WRAPPER, APP_SECTIONS.SIGN_UP_WRAPPER);
 }
@@ -68,10 +75,29 @@ function login(e) {
   e.preventDefault();
   const loginData = parseFormData(APP_FORMS.LOGIN_FORM);
   const signUpData = JSON.parse(localStorage.getItem(loginData.username));
-
+  userName = loginData.username;
   loginData.balance = signUpData.balance;
 
   allowLogin(loginData, signUpData);
+}
+
+function deposit(e) {
+  e.preventDefault();
+  const depositAmount = parseFormData(APP_FORMS.DEPOSIT_FORM);
+
+  if (depositAmount.deposit !== "") {
+    const userData = JSON.parse(localStorage.getItem(userName));
+    userData.balance += Number(depositAmount.deposit);
+    localStorage.setItem(userName, JSON.stringify(userData));
+    showUserInformation(
+      userData,
+      APP_SECTIONS.MOVEMENTS_WRAPPER,
+      APP_SECTIONS.DEPOSIT_WRAPPER
+    );
+    APP_FORMS.DEPOSIT_FORM.reset();
+  } else {
+    //feedback
+  }
 }
 
 function allowLogin(loginData, signUpData) {
@@ -79,16 +105,20 @@ function allowLogin(loginData, signUpData) {
     loginData.username === signUpData.username &&
     loginData.password === signUpData.password;
   if (isUserRegistered) {
-    showUserInformation(loginData);
+    showUserInformation(
+      loginData,
+      APP_SECTIONS.MOVEMENTS_WRAPPER,
+      APP_SECTIONS.LOGIN_WRAPPER
+    );
   } else {
     // Feedback error
   }
 }
 
-function showUserInformation(user) {
+function showUserInformation(user, sectionWillView, sectionWillHide) {
   APP_SPAN.USER_NAME.textContent = user.username;
   APP_SPAN.USER_BALANCE.textContent = formatter.format(user.balance);
-  toggleVisibility(APP_SECTIONS.MOVEMENTS_WRAPPER, APP_SECTIONS.LOGIN_WRAPPER);
+  toggleVisibility(sectionWillView, sectionWillHide);
 }
 
 function reloadPage() {
@@ -116,6 +146,21 @@ function initialize() {
   setClickHandlers(() => {
     setViewSection(APP_SECTIONS.SIGN_UP_WRAPPER);
   }, APP_BUTTONS.NAV_SIGN_UP);
+
+  setClickHandlers(() => {
+    toggleVisibility(
+      APP_SECTIONS.MOVEMENTS_WRAPPER,
+      APP_SECTIONS.DEPOSIT_WRAPPER
+    );
+  }, APP_BUTTONS.SHOW_DEPOSIT);
+
+  setClickHandlers(() => {
+    toggleVisibility(
+      APP_SECTIONS.MOVEMENTS_WRAPPER,
+      APP_SECTIONS.DEPOSIT_WRAPPER
+    );
+  }, APP_BUTTONS.DEPOSIT_CANCEL);
+
   setClickHandlers(
     reloadPage,
     APP_BUTTONS.LOGIN_CANCEL,
@@ -126,10 +171,13 @@ function initialize() {
 
   APP_FORMS.LOGIN_FORM.addEventListener("submit", login);
 
+  APP_FORMS.DEPOSIT_FORM.addEventListener("submit", deposit);
+
   toggleVisibility(
     APP_SECTIONS.LOGIN_WRAPPER,
     APP_SECTIONS.SIGN_UP_WRAPPER,
-    APP_SECTIONS.MOVEMENTS_WRAPPER
+    APP_SECTIONS.MOVEMENTS_WRAPPER,
+    APP_SECTIONS.DEPOSIT_WRAPPER
   );
 }
 
