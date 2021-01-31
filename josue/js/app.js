@@ -12,16 +12,17 @@ const accountSection = document.querySelector(".account");
 const fields = ['name', 'phone'];
 const registerFieldsIds = ['email', 'password', 'password_confirmation'];
 const registrationFormWrapper = document.querySelector('.account__left-wrapper');
-const USERDASHBOARDINFO ={
+const USER_MENU_INFO ={
     WELCOME : userDashboard.firstElementChild,
     BALANCE : userDashboard.querySelector('#current-balance'),
 }
-const USERDASHBOARDBTNS = {
+
+const USER_MENU_BTNS = {
     DEPOSIT: document.querySelector("#deposit"),
     WITHDRAW: document.querySelector("#withdraw"),
     TRANSACTIONS: document.querySelector("#transactions"),
 }
-const USERDASHBOARDFORMS = {
+const USER_MENU_FORMS = {
     DEPOSIT: {
         WRAPPER : document.querySelector(".deposit-form"),
         DEPOSIT_INPUT : document.querySelector("#deposit-form__input"),
@@ -31,7 +32,9 @@ const USERDASHBOARDFORMS = {
     WITHDRAW: {/*TO BE ADDED*/},
     TRANSACTIONS : {/* TO BE ADDED */}
 }
-let USER = undefined;
+
+let user = undefined;
+
 /*STRINGS*/
 const SIGN_IN = 'Sign In';
 const REGISTER = 'Register';
@@ -78,8 +81,8 @@ submitBtn.addEventListener('click', e => {
         // Fields are filled correctly now we check if user wants to register or login
         if (submitBtn.innerText == SIGN_IN) {
             const userData = parseFormData();
-            USER = getUserFromLocalStorage(userData);
-            USER ? loadUserDashboard() : alert("You are not an user, you have to register first!");
+            user = getUserFromLocalStorage(userData);
+            user ? loadUserDashboard() : alert("You are not an user, you have to register first!");
         }
         else {
             // User wants to register.. save it to localstorage
@@ -90,9 +93,9 @@ submitBtn.addEventListener('click', e => {
     }
 });
 const getUserFromLocalStorage = userData => {
-    const user = JSON.parse(window.localStorage.getItem(`${userData.phone}`));
-    console.log(user);
-    return user;
+    const userFromPhoneNumber = window.localStorage.getItem(`${userData.phone}`);
+    const parseFoundUser = JSON.parse(userFromPhoneNumber);
+    return parseFoundUser;
 };
 const loadUserDashboard = () => {
     welcomeSplash.remove();
@@ -100,46 +103,46 @@ const loadUserDashboard = () => {
     accountSection.classList.remove('account');
     accountSection.classList.add('dashboard');
     accountSection.appendChild(boardWrapper);
-    const userHasNoBalance = !USER.balance;
+    const userHasNoBalance = !user.balance;
     if (userHasNoBalance) {
-        USER = updateUserBalance(USER,0);
+        user = setInitialUserBalance(user);
     }
-    toggleUserDashboardBtnsVisibility(USER.balance, USERDASHBOARDBTNS.WITHDRAW, USERDASHBOARDBTNS.TRANSACTIONS);
-    USERDASHBOARDINFO.WELCOME.innerText = `Welcome ${USER.email}`;
-    USERDASHBOARDINFO.BALANCE.innerText = updateUserBalanceText();
+    toggleUserDashboardBtnsVisibility(user.balance, USER_MENU_BTNS.WITHDRAW, USER_MENU_BTNS.TRANSACTIONS);
+    userDashboard.firstElementChild.innerHTML = `Welcome ${user.email}`;
+    userDashboard.querySelector('#current-balance').innerText = `Your current balance is ${parseNumberToLocaleString(user.balance)}`
 }
 const updateUserBalance = (user,balance) => {
-    const currentBalance = USER.balance ? USER.balance : 0;
+    const currentBalance = user.balance ? user.balance : 0;
     const updatedUserBalance = currentBalance + balance;
     window.localStorage.setItem(`${user.phone}`, JSON.stringify({ ...user, 'balance': updatedUserBalance }))
     return getUserFromLocalStorage(user);
 };
 const parseNumberToLocaleString = number => number.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 
-const toggleUserDashboardBtnsVisibility = (balance, ...dashboardBtns) => (balance > 0) && unhideDOMElements(dashboardBtns)
+const toggleUserDashboardBtnsVisibility = (balance, ...dashboardBtns) => balance > 0 ? showDOMElements(dashboardBtns) : false
 
 
-const unhideDOMElements = DOMelements => DOMelements.forEach((DOMelement) => DOMelement.removeAttribute("hidden"))
+const showDOMElements = DOMelements => DOMelements.forEach((DOMelement) => DOMelement.removeAttribute("hidden"))
 
-USERDASHBOARDBTNS.DEPOSIT.addEventListener("click",()=>{
-    USERDASHBOARDFORMS.DEPOSIT.WRAPPER.removeAttribute("hidden");
+USER_MENU_BTNS.DEPOSIT.addEventListener("click",()=>{
+    USER_MENU_FORMS.DEPOSIT.WRAPPER.removeAttribute("hidden");
 })
-USERDASHBOARDFORMS.DEPOSIT.SUBMIT.addEventListener("click",(e)=>{
+USER_MENU_FORMS.DEPOSIT.SUBMIT.addEventListener("click",(e)=>{
     e.preventDefault();
-    const quantityToDeposit = parseInt(USERDASHBOARDFORMS.DEPOSIT.DEPOSIT_INPUT.value);
+    const quantityToDeposit = parseInt(USER_MENU_FORMS.DEPOSIT.DEPOSIT_INPUT.value);
     if(quantityToDeposit < 0){
-        USERDASHBOARDFORMS.DEPOSIT.ERROR_MESSAGE.innerText = "Quantity must be more than 0";
+        USER_MENU_FORMS.DEPOSIT.ERROR_MESSAGE.innerText = "Quantity must be more than 0";
         return false;
     }
-    const updatedUser = updateUserBalance(USER,quantityToDeposit);
-    USER = updatedUser;
-    USERDASHBOARDFORMS.DEPOSIT.DEPOSIT_INPUT.value ="";
-    USERDASHBOARDFORMS.DEPOSIT.ERROR_MESSAGE.innerText = "";
-    USERDASHBOARDINFO.BALANCE.innerText = updateUserBalanceText();
-    toggleUserDashboardBtnsVisibility(updatedUser.balance, USERDASHBOARDBTNS.WITHDRAW, USERDASHBOARDBTNS.TRANSACTIONS);
-    return USERDASHBOARDFORMS.DEPOSIT.WRAPPER.setAttribute("hidden",true);
+    const updatedUser = updateUserBalance(user,quantityToDeposit);
+    user = updatedUser;
+    USER_MENU_FORMS.DEPOSIT.DEPOSIT_INPUT.value ="";
+    USER_MENU_FORMS.DEPOSIT.ERROR_MESSAGE.innerText = "";
+    USER_MENU_INFO.BALANCE.innerText = updateUserBalanceText();
+    toggleUserDashboardBtnsVisibility(updatedUser.balance, USER_MENU_BTNS.WITHDRAW, USER_MENU_BTNS.TRANSACTIONS);
+    return USER_MENU_FORMS.DEPOSIT.WRAPPER.setAttribute("hidden",true);
 });
-const updateUserBalanceText= () =>`Your current balance is: ${parseNumberToLocaleString(USER.balance)}`
+const updateUserBalanceText= () =>`Your current balance is: ${parseNumberToLocaleString(user.balance)}`
 registerFieldsWrapper.remove();
 boardWrapper.remove();
 const validator = new FormValidator(form, fields);
