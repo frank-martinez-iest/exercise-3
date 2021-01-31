@@ -144,6 +144,10 @@ input {
   justify-content: center;
   background-color: var(--blue);
 }
+.deposit-form{
+  margin-top: 24px;
+  
+}
 @media screen and (max-width: 768px) {
   .account {
     grid-template-columns: 100%;

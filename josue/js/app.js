@@ -12,10 +12,24 @@ const accountSection = document.querySelector(".account");
 const fields = ['name', 'phone'];
 const registerFieldsIds = ['email', 'password', 'password_confirmation'];
 const registrationFormWrapper = document.querySelector('.account__left-wrapper');
+const USERDASHBOARDINFO ={
+    WELCOME : userDashboard.firstElementChild,
+    BALANCE : userDashboard.querySelector('#current-balance'),
+}
 const USERDASHBOARDBTNS = {
     DEPOSIT: document.querySelector("#deposit"),
     WITHDRAW: document.querySelector("#withdraw"),
     TRANSACTIONS: document.querySelector("#transactions"),
+}
+const USERDASHBOARDFORMS = {
+    DEPOSIT: {
+        WRAPPER : document.querySelector(".deposit-form"),
+        DEPOSIT_INPUT : document.querySelector("#deposit-form__input"),
+        SUBMIT : document.querySelector("#deposit-form__submit"),
+        ERROR_MESSAGE : document.querySelector("#deposit-form__error"),
+    },
+    WITHDRAW: {/*TO BE ADDED*/},
+    TRANSACTIONS : {/* TO BE ADDED */}
 }
 let USER = undefined;
 /*STRINGS*/
@@ -88,24 +102,46 @@ const loadUserDashboard = () => {
     accountSection.appendChild(boardWrapper);
     const userHasNoBalance = !USER.balance;
     if (userHasNoBalance) {
-        USER = setInitialUserBalance(USER);
+        USER = updateUserBalance(USER,0);
     }
     toggleUserDashboardBtnsVisibility(USER.balance, USERDASHBOARDBTNS.WITHDRAW, USERDASHBOARDBTNS.TRANSACTIONS);
-    userDashboard.firstElementChild.innerHTML = `Welcome ${USER.email}`;
-    userDashboard.querySelector('#current-balance').innerText = `Your current balance is ${parseNumberToLocaleString(USER.balance)}`
+    USERDASHBOARDINFO.WELCOME.innerText = `Welcome ${USER.email}`;
+    USERDASHBOARDINFO.BALANCE.innerText = updateUserBalanceText();
 }
-const setInitialUserBalance = user => {
-    window.localStorage.setItem(`${user.phone}`, JSON.stringify({ ...user, 'balance': 0 }))
+const updateUserBalance = (user,balance) => {
+    const currentBalance = USER.balance ? USER.balance : 0;
+    const updatedUserBalance = currentBalance + balance;
+    window.localStorage.setItem(`${user.phone}`, JSON.stringify({ ...user, 'balance': updatedUserBalance }))
     return getUserFromLocalStorage(user);
 };
 const parseNumberToLocaleString = number => number.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 
-const toggleUserDashboardBtnsVisibility = (balance, ...dashboardBtns) => balance > 0 ? unhideDOMElements(dashboardBtns) : false
+const toggleUserDashboardBtnsVisibility = (balance, ...dashboardBtns) => (balance > 0) && unhideDOMElements(dashboardBtns)
 
 
 const unhideDOMElements = DOMelements => DOMelements.forEach((DOMelement) => DOMelement.removeAttribute("hidden"))
 
+USERDASHBOARDBTNS.DEPOSIT.addEventListener("click",()=>{
+    USERDASHBOARDFORMS.DEPOSIT.WRAPPER.removeAttribute("hidden");
+})
+USERDASHBOARDFORMS.DEPOSIT.SUBMIT.addEventListener("click",(e)=>{
+    e.preventDefault();
+    const quantityToDeposit = parseInt(USERDASHBOARDFORMS.DEPOSIT.DEPOSIT_INPUT.value);
+    if(quantityToDeposit < 0){
+        USERDASHBOARDFORMS.DEPOSIT.ERROR_MESSAGE.innerText = "Quantity must be more than 0";
+        return false;
+    }
+    const updatedUser = updateUserBalance(USER,quantityToDeposit);
+    USER = updatedUser;
+    USERDASHBOARDFORMS.DEPOSIT.DEPOSIT_INPUT.value ="";
+    USERDASHBOARDFORMS.DEPOSIT.ERROR_MESSAGE.innerText = "";
+    USERDASHBOARDINFO.BALANCE.innerText = updateUserBalanceText();
+    toggleUserDashboardBtnsVisibility(updatedUser.balance, USERDASHBOARDBTNS.WITHDRAW, USERDASHBOARDBTNS.TRANSACTIONS);
+    return USERDASHBOARDFORMS.DEPOSIT.WRAPPER.setAttribute("hidden",true);
+});
+const updateUserBalanceText= () =>`Your current balance is: ${parseNumberToLocaleString(USER.balance)}`
 registerFieldsWrapper.remove();
 boardWrapper.remove();
 const validator = new FormValidator(form, fields);
 validator.initialize()
+

@@ -90,8 +90,13 @@
           <button id="deposit" class="btn btn--primary">Deposit</button>
           <button id="withdraw" class="btn btn--primary" hidden>Withdraw</button>
           <button id="transactions" class="btn btn--primary" hidden>View Transactions</button>
+          <form class="deposit-form" hidden>
+            <input id="deposit-form__input" type="number" required/>
+            <button id="deposit-form__submit" class="btn btn--primary">Accept</button>
+            <span id="deposit-form__error" class="error-message"></span>
+          </form>
         </div>
-      </div>
+        </div>
     </section>
   </main>
   <!--This is not read by jest-->
