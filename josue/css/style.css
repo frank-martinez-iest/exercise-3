@@ -67,6 +67,11 @@ input {
   grid-template-columns: 40% 60%;
   grid-template-rows: calc(100vh - 115px);
 }
+.dashboard {
+  display: grid;
+  grid-column: 1fr;
+  grid-template-rows: calc(100vh - 115px);
+}
 .account__splash-img {
   background-image: url("../images/bg.jpg");
   background-position: center center;
@@ -152,5 +157,13 @@ input {
   }
   .account__board-wrapper {
     padding: 24px;
+  }
+}
+@keyframes start {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
